@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison des Familles Saint François d'Assise - Marseille</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(107, 115, 255, 0.8), rgba(107, 115, 255, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><circle fill="%23e8f4fd" cx="200" cy="150" r="80"/><circle fill="%23e8f4fd" cx="800" cy="300" r="60"/><circle fill="%23e8f4fd" cx="1000" cy="100" r="40"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6b73ff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        main {
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #6b73ff;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #6b73ff;
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .team-member:hover {
+            transform: translateY(-3px);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6b73ff, #9c88ff);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-title {
+            color: #6b73ff;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #6b73ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Maison des Familles<br>Saint François d'Assise</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#equipe">Notre Équipe</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="container">
+            <!-- Logo principal -->
+            <div style="margin-bottom: 2rem;">
+                <svg viewBox="0 0 200 200" style="width: 120px; height: 120px; margin: 0 auto; display: block;">
+                    <!-- Rayons de soleil -->
+                    <g stroke="#E74C3C" stroke-width="4" stroke-linecap="round">
+                        <line x1="50" y1="30" x2="50" y2="10"/>
+                        <line x1="40" y1="36" x2="30" y2="20"/>
+                        <line x1="60" y1="36" x2="70" y2="20"/>
+                        <line x1="35" y1="45" x2="20" y2="35"/>
+                        <line x1="65" y1="45" x2="80" y2="35"/>
+                        
+                        <line x1="150" y1="30" x2="150" y2="10"/>
+                        <line x1="140" y1="36" x2="130" y2="20"/>
+                        <line x1="160" y1="36" x2="170" y2="20"/>
+                        <line x1="135" y1="45" x2="120" y2="35"/>
+                        <line x1="165" y1="45" x2="180" y2="35"/>
+                    </g>
+                    <!-- Famille stylisée -->
+                    <g fill="none" stroke="white" stroke-width="3">
+                        <!-- Parents -->
+                        <circle cx="50" cy="50" r="12"/>
+                        <circle cx="150" cy="50" r="12"/>
+                        <!-- Enfants -->
+                        <circle cx="80" cy="70" r="8"/>
+                        <circle cx="120" cy="70" r="8"/>
+                        <!-- Corps famille unis -->
+                        <path d="M30,70 Q30,100 50,130 Q70,150 100,150 Q130,150 150,130 Q170,100 170,70"/>
+                        <path d="M60,90 Q70,110 100,110 Q130,110 140,90"/>
+                        <!-- Coeur central -->
+                        <path d="M85,95 Q85,85 100,85 Q115,85 115,95 Q115,105 100,120 Q85,105 85,95" fill="#E74C3C" stroke="#E74C3C"/>
+                    </g>
+                    <!-- Texte Maison des Familles -->
+                    <text x="100" y="175" text-anchor="middle" fill="#E74C3C" font-size="14" font-weight="bold">MAISON DES FAMILLES</text>
+                    <text x="100" y="190" text-anchor="middle" fill="white" font-size="10">Saint François d'Assise</text>
+                </svg>
+            </div>
+            
+            <h1>Bienvenue à la Maison des Familles</h1>
+            <p>Un lieu d'accompagnement et de soutien pour les familles marseillaises, dans l'esprit de Saint François d'Assise</p>
+            <a href="#contact" class="cta-button">Nous Contacter</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section" id="services">
+            <h2>Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Accompagnement Familial</h3>
+                    <p>Soutien et guidance pour les familles en difficulté, médiation familiale et conseil conjugal dans un esprit d'écoute et de bienveillance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👶</div>
+                    <h3>Soutien à la Parentalité</h3>
+                    <p>Ateliers et accompagnement individuel pour les parents, groupes de parole et formations pour développer les compétences parentales.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Activités Éducatives</h3>
+                    <p>Ateliers créatifs, activités périscolaires et temps de loisirs pour les enfants et adolescents dans un cadre sécurisé et épanouissant.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤝</div>
+                    <h3>Médiation & Conseil</h3>
+                    <p>Services de médiation familiale, conseil conjugal et accompagnement psychologique pour surmonter les difficultés relationnelles.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Formation & Prévention</h3>
+                    <p>Sessions de formation sur la parentalité, prévention des violences familiales et sensibilisation aux droits de l'enfant.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Accueil & Orientation</h3>
+                    <p>Premier accueil des familles, évaluation des besoins et orientation vers les services adaptés du territoire marseillais.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="equipe">
+            <h2>Notre Équipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">MH</div>
+                    <div class="member-name">Marie Hernandez</div>
+                    <div class="member-title">Directrice & Médiatrice Familiale</div>
+                    <div class="member-bio">Diplômée en médiation familiale avec 15 ans d'expérience dans l'accompagnement des familles. Spécialisée dans la résolution de conflits et le soutien parental.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">PD</div>
+                    <div class="member-name">Pierre Dubois</div>
+                    <div class="member-title">Psychologue Clinicien</div>
+                    <div class="member-bio">Psychologue spécialisé dans l'accompagnement des enfants et adolescents. Formé aux thérapies familiales systémiques et à la prise en charge des traumatismes.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">SF</div>
+                    <div class="member-name">Sophie Fernandez</div>
+                    <div class="member-title">Conseillère Conjugale</div>
+                    <div class="member-bio">Conseillère conjugale et familiale certifiée, accompagne les couples dans leurs difficultés relationnelles et les transitions de vie avec empathie et professionnalisme.</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">AL</div>
+                    <div class="member-name">Antoine Lopez</div>
+                    <div class="member-title">Éducateur Spécialisé</div>
+                    <div class="member-bio">Éducateur spécialisé dans l'animation d'ateliers éducatifs et la prise en charge d'enfants en difficulté. Passionné par l'art-thérapie et les pédagogies alternatives.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h2>Nous Contacter</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Adresse</h3>
+                    <p>123 Avenue Saint François d'Assise<br>13001 Marseille</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Téléphone</h3>
+                    <p>04 91 XX XX XX<br>Lundi au Vendredi<br>9h00 - 17h00</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>contact@maisonfamilles-stfrancois.fr<br>Réponse sous 24h</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <h3>Horaires d'accueil</h3>
+                    <p>Lundi - Vendredi: 9h - 17h<br>Samedi: 9h - 12h<br>Dimanche: Fermé</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #6b73ff;">
+                <h3 style="color: #2c3e50; margin-bottom: 1rem;">🚨 Urgences</h3>
+                <p style="color: #666;">En cas d'urgence familiale ou de situation de violence, contactez immédiatement le <strong>3919 (Violences Femmes Info)</strong> ou le <strong>119 (Allô Enfance en Danger)</strong>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Maison des Familles Saint François d'Assise - Marseille | Tous droits réservés</p>
+            <p>Dans l'esprit de Saint François d'Assise : accueil, écoute et accompagnement bienveillant</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects for service cards
+        document.querySelectorAll('.service-card, .team-member').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
