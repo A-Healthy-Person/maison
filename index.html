@@ -6,28 +6,27 @@
   <title>Maison des Familles – Saint François d'Assise</title>
   <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
   <style>
-    /* ===== Palette (from logo) ===== */
+    /* ===== Palette (brighter, from logo) ===== */
     :root{
-      --blue:#0C5CC5;     /* primary */
-      --blue-900:#083b86; /* dark text blue */
-      --coral:#FF5754;    /* accent from logo */
-      --ink:#1f2937;      /* neutral text */
-      --muted:#6b7280;    /* secondary text */
-      --bg:#ffffff;       /* page background */
-      --soft:#f5f7ff;     /* soft section */
+      --blue:#005BBB;       /* bright royal blue */
+      --blue-900:#003F88;   /* dark accent blue */
+      --coral:#FF4438;      /* bright coral/red from logo */
+      --ink:#1f2937;        /* neutral text */
+      --muted:#6b7280;      /* secondary text */
+      --bg:#ffffff;
+      --soft:#f0f6ff;       /* soft blue section bg */
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.08);
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
 
     /* ===== Header / Nav ===== */
-    .topbar{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #e5e7eb}
+    .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb}
     .nav{max-width:1160px;margin:auto;display:flex;align-items:center;gap:24px;padding:12px 20px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand img{height:auto;width:clamp(160px, 20vw, 260px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+    .brand img{height:auto;width:clamp(170px, 20vw, 280px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
     .navlinks{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
     .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:700;padding:8px 10px;border-radius:10px}
     .navlinks a:hover{background:var(--soft)}
@@ -41,7 +40,7 @@
     .sub{color:var(--muted);text-align:center;margin:0 0 28px}
 
     /* ===== Welcome (2 columns) ===== */
-    .welcome{background:linear-gradient(0deg, rgba(12,92,197,.06), rgba(12,92,197,.06)), #fff}
+    .welcome{background:linear-gradient(0deg, rgba(0,91,187,.07), rgba(0,91,187,.07)), #fff}
     .welcome-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;padding:24px 20px}
     .welcome h1{font-size:clamp(28px,3.2vw,46px);line-height:1.15;margin:0 0 10px;color:var(--blue-900)}
     .welcome p{color:#374151;margin:0 0 18px;max-width:60ch}
@@ -56,7 +55,7 @@
     .car-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer}
     .car-prev{left:8px}.car-next{right:8px}
     .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
-    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.2)}
+    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.25)}
     .dot.active{background:#fff}
 
     /* ===== Services ===== */
@@ -103,7 +102,7 @@
   <header class="topbar" role="banner">
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="#welcome" aria-label="Accueil">
-        <!-- Use your blue-background logo -->
+        <!-- Logo path as you requested -->
         <img src="images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
       </a>
       <div class="navlinks">
@@ -201,9 +200,9 @@
         </form>
         <div class="card">
           <h3 style="margin-top:0;color:var(--blue-900)">Infos</h3>
-          <p><strong>Adresse</strong><br>123 Avenue Saint François d'Assise, 13001 Marseille</p>
+          <p><strong>Adresse</strong><br>116 BOULEVARD VAUBAN, 13006 MARSEILLE</p>
+          <p><strong>Email</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
           <p><strong>Téléphone</strong><br>04 91 XX XX XX (Lun–Ven : 9h–17h)</p>
-          <p><strong>Email</strong><br>contact@maisonfamilles-stfrancois.fr</p>
           <div class="note"><strong>Urgences :</strong> 3919 (Violences Femmes Info) · 119 (Allô Enfance en Danger)</div>
         </div>
       </div>
