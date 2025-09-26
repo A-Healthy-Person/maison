@@ -8,7 +8,7 @@
   if(!track) return;
 
   const MAX     = 10;
-  const baseDir = 'maison/images/carousel';
+  const baseDir = 'images/carousel';
   const exts    = ['jpg','JPG','jpeg','JPEG','png','PNG'];
   const slides  = [];
   let i = 0, timer;
