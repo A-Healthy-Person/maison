@@ -100,13 +100,13 @@
 
         .carousel-slides {
             display: flex;
-            width: 400%;
+            width: 1000%;
             height: 100%;
             transition: transform 0.5s ease-in-out;
         }
 
         .carousel-slide {
-            width: 25%;
+            width: 10%;
             height: 100%;
             position: relative;
             display: flex;
@@ -474,7 +474,7 @@
                 <ul>
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#apropos">Notre Équipe</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -488,16 +488,34 @@
             <div class="carousel-container">
                 <div class="carousel-slides" id="carouselSlides">
                     <div class="carousel-slide active">
-                        <img src="maison/images/carousel/image1.jpg" alt="Maison des Familles - Activités" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Activités et Services</div>';">
+                        <img src="maison/images/carousel/img_1.jpg" alt="Photo 1" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 1</div>';">
                     </div>
                     <div class="carousel-slide">
-                        <img src="maison/images/carousel/image2.jpg" alt="Maison des Familles - Services" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Accompagnement Familial</div>';">
+                        <img src="maison/images/carousel/img_2.jpg" alt="Photo 2" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 2</div>';">
                     </div>
                     <div class="carousel-slide">
-                        <img src="maison/images/carousel/image3.jpg" alt="Maison des Familles - Équipe" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Notre Équipe</div>';">
+                        <img src="maison/images/carousel/img_3.jpg" alt="Photo 3" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 3</div>';">
                     </div>
                     <div class="carousel-slide">
-                        <img src="maison/images/carousel/image4.jpg" alt="Maison des Familles - Locaux" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Nos Locaux</div>';">
+                        <img src="maison/images/carousel/img_4.jpg" alt="Photo 4" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 4</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_5.jpg" alt="Photo 5" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 5</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_6.jpg" alt="Photo 6" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 6</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_7.jpg" alt="Photo 7" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 7</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_8.jpg" alt="Photo 8" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 8</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_9.jpg" alt="Photo 9" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 9</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/img_10.jpg" alt="Photo 10" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Photo 10</div>';">
                     </div>
                 </div>
                 
@@ -509,6 +527,12 @@
                     <span class="dot" onclick="currentSlide(2)"></span>
                     <span class="dot" onclick="currentSlide(3)"></span>
                     <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                    <span class="dot" onclick="currentSlide(7)"></span>
+                    <span class="dot" onclick="currentSlide(8)"></span>
+                    <span class="dot" onclick="currentSlide(9)"></span>
+                    <span class="dot" onclick="currentSlide(10)"></span>
                 </div>
             </div>
         </section>
@@ -667,7 +691,7 @@
             
             // Move carousel
             const slidesContainer = document.getElementById('carouselSlides');
-            slidesContainer.style.transform = `translateX(-${index * 25}%)`;
+            slidesContainer.style.transform = `translateX(-${index * 10}%)`;
         }
 
         function changeSlide(direction) {
