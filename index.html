@@ -76,16 +76,18 @@
         <p style="color:#555;margin-top:.5rem;">Cliquez sur une photo pour l’agrandir.</p>
       </div>
 
-      <div class="welcome-gallery">
-        <img src="assets/img_30.jpg" alt="Photo 1" loading="lazy">
-        <img src="assets/img_13.jpg" alt="Photo 2" loading="lazy">
-        <img src="assets/img_14.jpg" alt="Photo 3" loading="lazy">
-        <img src="assets/img_18.jpg" alt="Photo 4" loading="lazy">
-        <img src="assets/img_19.jpg" alt="Photo 5" loading="lazy">
-        <img src="assets/img_20.jpg" alt="Photo 6" loading="lazy">
-        <img src="assets/img_21.jpg" alt="Photo 7" loading="lazy">
+      <div class="welcome-gallery" aria-label="Galerie photos">
+        <!-- Keep images in /images/carousel/ -->
+        <img src="/images/carousel/img_30.jpg" alt="Photo 1" loading="lazy">
+        <img src="/images/carousel/img_13.jpg" alt="Photo 2" loading="lazy">
+        <img src="/images/carousel/img_14.jpg" alt="Photo 3" loading="lazy">
+        <img src="/images/carousel/img_18.jpg" alt="Photo 4" loading="lazy">
+        <img src="/images/carousel/img_19.jpg" alt="Photo 5" loading="lazy">
+        <img src="/images/carousel/img_20.jpg" alt="Photo 6" loading="lazy">
+        <img src="/images/carousel/img_21.jpg" alt="Photo 7" loading="lazy">
       </div>
-      </section>
+    </div>
+  </section>
 
   <!-- Services -->
   <section id="services" aria-label="Services">
@@ -201,7 +203,10 @@
   <!-- Lightbox script (auto-detects thumbnails; no hard-coded count) -->
   <script>
   (function(){
-    const gallery = document.querySelector(".welcome-gallery");
+    // Support either .welcome-gallery or .photo-row, just in case
+    const gallery = document.querySelector(".welcome-gallery, .photo-row");
+    if (!gallery) return;
+
     const thumbs  = Array.from(gallery.querySelectorAll("a.thumb, img"));
 
     // Build an array from the markup (href/src + alt)
@@ -209,7 +214,7 @@
       if (el.tagName === "A") {
         const img = el.querySelector("img");
         return { src: el.getAttribute("href"), alt: img ? (img.alt || "") : "" };
-        } else {
+      } else {
         return { src: el.getAttribute("src"), alt: el.alt || "" };
       }
     });
