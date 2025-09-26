@@ -31,18 +31,26 @@ body{
   gap:16px; padding:12px 20px; flex-wrap:nowrap;
 }
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; flex:0 0 auto}
-.brand img{
-  display:block; height:auto; width:auto; max-height:52px;
-  filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));
+/* Brand logo */
+.brand img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 80px;   /* was 52px */
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
 }
-.navlinks{
-  margin-left:auto; display:flex; align-items:center; gap:18px;
-  flex:1 1 auto; justify-content:flex-end; min-width:0
+
+/* Nav links */
+.navlinks a {
+  color: var(--blue-900);
+  text-decoration: none;
+  font-weight: 800;
+  padding: 10px 14px;         /* a little more breathing room */
+  border-radius: 10px;
+  font-size: 1.25rem;         /* was 1.05rem */
+  white-space: nowrap;
 }
-.navlinks a{
-  color:var(--blue-900); text-decoration:none; font-weight:800;
-  padding:8px 10px; border-radius:10px; font-size:1.05rem; white-space:nowrap
-}
+
 .navlinks a:hover{ background:var(--soft) }
 
 /* Generic layout */
