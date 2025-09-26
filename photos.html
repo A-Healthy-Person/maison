@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galerie – Maison des Familles</title>
+  <meta name="description" content="Galerie photos de la Maison des Familles Saint François d'Assise à Marseille." />
+  <link rel="stylesheet" href="/assets/site.css?v=8" />
+  <style>
+    /* Small page-specific safety net (works even if site.css is cached) */
+    .gallery-grid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media(min-width:640px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1024px){.gallery-grid{grid-template-columns:repeat(4,1fr)}}
+    .gallery-grid img{width:100%;height:200px;object-fit:cover;border-radius:12px;display:block;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.85);z-index:1000;padding:20px}
+    .modal.open{display:flex}
+    .modal img{max-width:min(92vw,1400px);max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .modal .close{position:absolute;top:16px;right:20px;color:#fff;text-decoration:none;font-size:34px;line-height:1;font-weight:700;background:rgba(255,255,255,.15);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .modal .close:hover{background:rgba(255,255,255,.25)}
+    .hint{color:#6b7280;font-size:.95rem;margin:12px 0}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="topbar" role="banner">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="/" aria-label="Accueil">
+        <img src="/images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
+      </a>
+      <div class="navlinks">
+        <a href="/">Accueil</a>
+        <a href="/#services">Services</a>
+        <a href="/#team">Notre Équipe</a>
+        <a href="/#contact">Contact</a>
+        <a href="/photos.html" aria-current="page">Photos</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <section class="wrap" style="padding-top:32px">
+    <h1 class="title">Galerie photos</h1>
+    <p class="sub">Quelques moments de vie à la Maison des Familles.</p>
+  </section>
+
+  <!-- Gallery (auto-populated) -->
+  <section class="wrap" aria-label="Galerie">
+    <div class="hint" id="hint">Chargement des photos…</div>
+    <div class="gallery-grid" id="gallery"></div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <a class="close" href="#" id="closeBtn" aria-label="Fermer">×</a>
+    <img id="modalImg" alt="Photo agrandie">
+  </div>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="foot">
+      <img src="/images/logos/BLOGO.png" alt="Logo Maison des Familles" />
+      <small>© 2025 · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement</small>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const gallery = document.getElementById('gallery');
+      const hint = document.getElementById('hint');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modalImg');
+      const closeBtn = document.getElementById('closeBtn');
+
+      const base = '/images/carousel';
+      const maxN = 30; // try up to 30 files
+      const exts = ['jpg','jpeg','png','JPG','JPEG','PNG'];
+      const found = [];
+
+      function probe(src){ return new Promise(resolve=>{
+        const img = new Image();
+        img.onload = ()=>resolve(src);
+        img.onerror = ()=>resolve(null);
+        img.src = src + '?v=' + Date.now(); // cache-bust
+      });}
+
+      async function tryOne(n){
+        for(const ext of exts){
+          const ok = await probe(`${base}/img_${n}.${ext}`);
+          if(ok) return ok;
+        }
+        return null;
+      }
+
+      (async function loadAll(){
+        for(let n=1;n<=maxN;n++){
+          const ok = await tryOne(n);
+          if(ok) found.push(ok);
+        }
+        if(found.length===0){
+          hint.textContent = 'Aucune photo trouvée. Placez des fichiers nommés img_1.jpg, img_2.jpg… dans /images/carousel/.';
+          return;
+        }
+        hint.remove();
+        for(const src of found){
+          const el = document.createElement('img');
+          el.src = src;
+          el.alt = 'Photo';
+          el.loading = 'lazy';
+          el.addEventListener('click', ()=>{
+            modalImg.src = src;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden','false');
+          });
+          gallery.appendChild(el);
+        }
+      })();
+
+      function close(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        modalImg.removeAttribute('src');
+      }
+      modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+      closeBtn.addEventListener('click', (e)=>{ e.preventDefault(); close(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+    })();
+  </script>
+</body>
+</html>
