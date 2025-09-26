@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison des Familles – Saint François d'Assise</title>
   <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
-  <link rel="stylesheet" href="/assets/site.css?v=3">
+  <link rel="stylesheet" href="/assets/site.css?v=6" />
 </head>
 <body>
 
-  <!-- Header with logo (top) -->
+  <!-- Header -->
   <header class="topbar" role="banner">
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="#welcome" aria-label="Accueil">
@@ -24,7 +24,7 @@
     </nav>
   </header>
 
-  <!-- Welcome (left text, right carousel) -->
+  <!-- Welcome (text left, gallery right) -->
   <section id="welcome" class="welcome" aria-label="Bienvenue">
     <div class="welcome-grid">
       <div>
@@ -32,16 +32,18 @@
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
       </div>
 
-      <figure class="carousel" aria-roledescription="carrousel" aria-label="Galerie photos">
-        <div class="carousel-track" id="track"></div>
-        <button class="car-btn car-prev" aria-label="Photo précédente" id="prev">‹</button>
-        <button class="car-btn car-next" aria-label="Photo suivante" id="next">›</button>
-        <div class="dots" role="tablist" aria-label="Sélection de photo" id="dots"></div>
-      </figure>
+      <div class="welcome-gallery" aria-label="Galerie photos">
+        <img src="/images/carousel/img_1.jpg" alt="Photo 1" loading="lazy">
+        <img src="/images/carousel/img_2.jpg" alt="Photo 2" loading="lazy">
+        <img src="/images/carousel/img_3.jpg" alt="Photo 3" loading="lazy">
+        <img src="/images/carousel/img_4.jpg" alt="Photo 4" loading="lazy">
+        <img src="/images/carousel/img_5.jpg" alt="Photo 5" loading="lazy">
+        <img src="/images/carousel/img_6.jpg" alt="Photo 6" loading="lazy">
+      </div>
     </div>
   </section>
 
-  <!-- Services (Claude styles) -->
+  <!-- Services (Claude styles kept) -->
   <section id="services" aria-label="Services">
     <div class="wrap">
       <h2 class="title">Nos Services</h2>
@@ -133,14 +135,12 @@
     </div>
   </section>
 
-  <!-- Footer with logo -->
+  <!-- Footer -->
   <footer role="contentinfo">
     <div class="foot">
       <img src="/images/logos/BLOGO.png" alt="Logo Maison des Familles" />
       <small>© 2025 · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement</small>
     </div>
   </footer>
-
-  <script src="/assets/carousel.js?v=3" defer></script>
 </body>
 </html>
