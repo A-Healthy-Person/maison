@@ -38,14 +38,14 @@
       max-width:1160px; margin:auto;
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; padding:12px 20px;
-      min-height:80px;
+      min-height:100px;
     }
     .brand{
       display:flex; align-items:center; text-decoration:none;
       flex-shrink: 0;
     }
     .brand img{
-      height:60px; 
+      height:85px; 
       width:auto;
       object-fit:contain;
       filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));
@@ -138,8 +138,20 @@
     .service-card{
       background:#fff; padding:32px; border-radius:var(--radius);
       box-shadow:var(--shadow); transition:transform 0.3s ease;
+      border-left: 6px solid var(--coral);
+      position: relative;
     }
     .service-card:hover{ transform:translateY(-4px) }
+    .service-card::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 6px;
+      background: var(--coral);
+      border-radius: 0 var(--radius) 0 0;
+    }
     .service-card h3{
       color:var(--blue-900); margin:0 0 16px; font-size:1.4rem; font-weight:600;
     }
@@ -303,10 +315,10 @@
     <div class="welcome-gallery" aria-label="Galerie photos">
       <img src="/images/carousel/img_30.jpg" alt="Activités familiales" loading="lazy">
       <img src="/images/carousel/img_13.jpg" alt="Espace d'accueil" loading="lazy">
-      <img src="/images/carousel/img_12.jpg" alt="Atelier enfants" loading="lazy">
+      <img src="/images/carousel/img_29.jpg" alt="Atelier enfants" loading="lazy">
       <img src="/images/carousel/img_19.jpg" alt="Salle de réunion" loading="lazy">
       <img src="/images/carousel/img_20.jpg" alt="Jardin extérieur" loading="lazy">
-      <img src="/images/carousel/img_12.jpg" alt="Espace détente" loading="lazy">
+      <img src="/images/carousel/img_25.jpg" alt="Espace détente" loading="lazy">
     </div>
   </section>
 
