@@ -6,15 +6,14 @@
   <title>Maison des Familles – Saint François d'Assise</title>
   <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
   <style>
-    /* ===== Palette (brighter, from logo) ===== */
     :root{
-      --blue:#005BBB;       /* bright royal blue */
-      --blue-900:#003F88;   /* dark accent blue */
-      --coral:#FF4438;      /* bright coral/red */
-      --ink:#1f2937;        /* neutral text */
-      --muted:#6b7280;      /* secondary text */
+      --blue:#005BBB;
+      --blue-900:#003F88;
+      --coral:#FF4438;      /* red headline color */
+      --ink:#1f2937;
+      --muted:#6b7280;
       --bg:#ffffff;
-      --soft:#f0f6ff;       /* soft blue background */
+      --soft:#f0f6ff;
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.08);
     }
@@ -23,35 +22,31 @@
     html{scroll-behavior:smooth}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
 
-    /* ===== Header / Nav ===== */
+    /* Header / Nav */
     .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb}
     .nav{max-width:1160px;margin:auto;display:flex;align-items:center;gap:24px;padding:12px 20px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    /* reduced ~30% from earlier size */
+    /* logo reduced ~30% */
     .brand img{height:auto;width:clamp(120px, 14vw, 200px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
     .navlinks{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
     .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:800;padding:8px 10px;border-radius:10px;font-size:1.05rem}
     .navlinks a:hover{background:var(--soft)}
 
-    /* ===== Sections ===== */
+    /* Sections */
     section{padding:56px 20px}
     .wrap{max-width:1160px;margin:auto}
     .title{font-size:clamp(24px,2.8vw,36px);color:var(--blue-900);margin:0 0 10px;text-align:center}
     .sub{color:var(--muted);text-align:center;margin:0 0 28px}
 
-    /* ===== Welcome (2 columns) ===== */
+    /* Welcome */
     .welcome{background:linear-gradient(0deg, rgba(0,91,187,.07), rgba(0,91,187,.07)), #fff}
     .welcome-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;padding:24px 20px}
-    .welcome h1{font-size:clamp(28px,3.2vw,46px);line-height:1.15;margin:0 0 10px;color:var(--blue-900)}
+    .welcome h1{font-size:clamp(28px,3.2vw,46px);line-height:1.15;margin:0 0 10px;color:var(--coral)} /* headline now red */
     .welcome p{color:#374151;margin:0 0 14px;max-width:60ch}
-    .inline-links{margin-top:6px}
-    .inline-links a{color:var(--blue);text-decoration:none;font-weight:800}
-    .inline-links a:hover{text-decoration:underline}
 
-    /* ===== Carousel (right column) ===== */
+    /* Carousel */
     .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#e5e7eb}
     .carousel-track{display:flex;transition:transform .5s ease}
-    .carousel-track > *{flex:0 0 100%} /* each slide exactly 100% width */
     .carousel img{width:100%;height:380px;object-fit:cover;display:block}
     .car-btn{
       position:absolute;top:50%;transform:translateY(-50%);
@@ -64,14 +59,14 @@
     .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.25)}
     .dot.active{background:#fff}
 
-    /* ===== Services ===== */
+    /* Services */
     .grid{display:grid;gap:20px}
     .services-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     .card{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
     .card h3{margin:6px 0 6px;color:var(--blue-900)}
     .card p{margin:0}
 
-    /* ===== Team ===== */
+    /* Team */
     .team{background:var(--soft)}
     .team-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
     .member{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:8px}
@@ -80,17 +75,17 @@
     .role{color:var(--blue);font-weight:700}
     .bio{color:#4b5563}
 
-    /* ===== Contact ===== */
+    /* Contact */
     .contact-grid{grid-template-columns:1fr 1fr}
     form input, form textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0 12px}
     .note{margin-top:14px;border-left:6px solid var(--blue);padding:12px;border-radius:8px;background:#f8fafc}
 
-    /* ===== Footer ===== */
+    /* Footer */
     footer{background:#0b1533;color:#e5e7eb}
     footer .foot{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 20px}
     footer img{width:180px;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
 
-    /* ===== Responsive ===== */
+    /* Responsive */
     @media (max-width: 1020px){
       .welcome-grid{grid-template-columns:1fr}
       .services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -104,11 +99,10 @@
 </head>
 <body>
 
-  <!-- ===== Header / Nav ===== -->
+  <!-- Header -->
   <header class="topbar" role="banner">
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="#welcome" aria-label="Accueil">
-        <!-- Header logo (reduced) -->
         <img src="images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
       </a>
       <div class="navlinks">
@@ -120,14 +114,13 @@
     </nav>
   </header>
 
-  <!-- ===== Welcome (2 columns: text left, carousel right) ===== -->
+  <!-- Welcome -->
   <section id="welcome" class="welcome" aria-label="Bienvenue">
     <div class="welcome-grid">
       <div>
         <h1>Bienvenue à la Maison des Familles</h1>
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
-        <!-- Buttons removed as requested; simple inline links instead -->
-        <p class="inline-links">→ <a href="#services">Nos services</a> · <a href="#team">Notre équipe</a> · <a href="#contact">Contact</a></p>
+        <!-- (Requested) removed the quick-links line -->
       </div>
 
       <!-- Carousel -->
@@ -140,7 +133,7 @@
     </div>
   </section>
 
-  <!-- ===== Services ===== -->
+  <!-- Services -->
   <section id="services" aria-label="Services">
     <div class="wrap">
       <h2 class="title">Nos services</h2>
@@ -156,7 +149,7 @@
     </div>
   </section>
 
-  <!-- ===== Team ===== -->
+  <!-- Team -->
   <section id="team" class="team" aria-label="Notre équipe">
     <div class="wrap">
       <h2 class="title">Notre équipe</h2>
@@ -190,7 +183,7 @@
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
+  <!-- Contact -->
   <section id="contact" aria-label="Contact">
     <div class="wrap">
       <h2 class="title">Nous contacter</h2>
@@ -204,7 +197,7 @@
         </form>
         <div class="card">
           <h3 style="margin-top:0;color:var(--blue-900)">Infos</h3>
-          <p><strong>Adresse</strong><br>116 BOULEVARD VAUBAN, 13006 MARSEILLE</p>
+          <p><strong>Adresse</strong><br>116 Boulevard Vauban, 13006 Marseille</p>
           <p><strong>Email</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
           <p><strong>Téléphone</strong><br>04 91 XX XX XX (Lun–Ven : 9h–17h)</p>
           <div class="note"><strong>Urgences :</strong> 3919 (Violences Femmes Info) · 119 (Allô Enfance en Danger)</div>
@@ -213,7 +206,7 @@
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- Footer -->
   <footer role="contentinfo">
     <div class="foot">
       <img src="images/logos/BLOGO.png" alt="Logo Maison des Familles" />
@@ -221,7 +214,7 @@
     </div>
   </footer>
 
-  <!-- ===== Carousel JS (LOCKED to maison/images/carousel/, robust extensions) ===== -->
+  <!-- Carousel JS: LOCKED to maison/images/carousel, fixes width/translate math -->
   <script>
     const track = document.getElementById('track');
     const dotsWrap = document.getElementById('dots');
@@ -229,15 +222,15 @@
     const next = document.getElementById('next');
 
     const MAX = 10;
-    const basePath = 'maison/images/carousel';         // locked here
-    const exts = ['jpg','JPG','jpeg','JPEG','png','PNG']; // allowed
+    const basePath = 'maison/images/carousel';
+    const exts = ['jpg','JPG','jpeg','JPEG','png','PNG'];
     const slides = [];
 
     function probe(src, ok, fail){
       const img = new Image();
       img.onload = () => ok(img);
       img.onerror = fail;
-      img.src = src + `?v=${Date.now()}`; // cache-bust to avoid stale 404s
+      img.src = src + `?v=${Date.now()}`; // cache-bust
     }
 
     function findExisting(n, done){
@@ -268,7 +261,12 @@
           '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez des images nommées <code>img_1.jpg</code>… dans <code>maison/images/carousel/</code>.</div>';
         return;
       }
-      // dots
+
+      // Set track width and each slide width so translateX(-100%) moves exactly one slide.
+      track.style.width = `${slides.length * 100}%`;
+      slides.forEach(im => { im.style.width = `${100 / slides.length}%`; });
+
+      // Build dots
       slides.forEach((_,idx)=>{
         const b=document.createElement('button');
         b.className='dot'+(idx===0?' active':'');
@@ -277,6 +275,7 @@
         b.addEventListener('click',()=>go(idx));
         dotsWrap.appendChild(b);
       });
+
       go(0);
       timer = setInterval(()=>go(i+1), 5000);
     }
