@@ -1,320 +1,764 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maison des Familles – Saint François d'Assise</title>
-  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
-  <style>
-    :root{
-      --blue:#005BBB;
-      --blue-900:#003F88;
-      --coral:#FF4438;      /* red headline color */
-      --ink:#1f2937;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --soft:#f0f6ff;
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison des Familles - Marseille</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
 
-    /* Header / Nav */
-    .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb}
-    .nav{max-width:1160px;margin:auto;display:flex;align-items:center;gap:24px;padding:12px 20px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    /* logo reduced ~30% */
-    .brand img{height:auto;width:clamp(120px, 14vw, 200px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
-    .navlinks{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
-    .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:800;padding:8px 10px;border-radius:10px;font-size:1.05rem}
-    .navlinks a:hover{background:var(--soft)}
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1E4B99 0%, #2c5aa0 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    /* Sections */
-    section{padding:56px 20px}
-    .wrap{max-width:1160px;margin:auto}
-    .title{font-size:clamp(24px,2.8vw,36px);color:var(--blue-900);margin:0 0 10px;text-align:center}
-    .sub{color:var(--muted);text-align:center;margin:0 0 28px}
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
 
-    /* Welcome */
-    .welcome{background:linear-gradient(0deg, rgba(0,91,187,.07), rgba(0,91,187,.07)), #fff}
-    .welcome-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;padding:24px 20px}
-    .welcome h1{font-size:clamp(28px,3.2vw,46px);line-height:1.15;margin:0 0 10px;color:var(--coral)} /* headline now red */
-    .welcome p{color:#374151;margin:0 0 14px;max-width:60ch}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    /* Carousel */
-    .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#e5e7eb}
-    .carousel-track{display:flex;transition:transform .5s ease}
-    .carousel img{width:100%;height:380px;object-fit:cover;display:block}
-    .car-btn{
-      position:absolute;top:50%;transform:translateY(-50%);
-      background:rgba(0,0,0,.55);border:none;color:#fff;
-      width:52px;height:52px;border-radius:50%;cursor:pointer;
-      font-size:28px;line-height:1;display:flex;align-items:center;justify-content:center
-    }
-    .car-prev{left:10px}.car-next{right:10px}
-    .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
-    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.25)}
-    .dot.active{background:#fff}
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
 
-    /* Services */
-    .grid{display:grid;gap:20px}
-    .services-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
-    .card h3{margin:6px 0 6px;color:var(--blue-900)}
-    .card p{margin:0}
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
 
-    /* Team */
-    .team{background:var(--soft)}
-    .team-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .member{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:8px}
-    .avatar{aspect-ratio:1/1;width:100%;border-radius:12px;object-fit:cover;background:linear-gradient(135deg,var(--blue),#7aa5ff)}
-    .name{font-weight:800;color:var(--blue-900)}
-    .role{color:var(--blue);font-weight:700}
-    .bio{color:#4b5563}
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-    /* Contact */
-    .contact-grid{grid-template-columns:1fr 1fr}
-    form input, form textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0 12px}
-    .btn{background:var(--coral);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-weight:700;cursor:pointer;transition:background 0.2s}
-    .btn:hover{background:#e63946}
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
 
-    /* Footer */
-    footer{background:#0b1533;color:#e5e7eb}
-    footer .foot{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 20px}
-    footer img{width:180px;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+        .nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #E74C3C;
+        }
 
-    /* Responsive */
-    @media (max-width: 1020px){
-      .welcome-grid{grid-template-columns:1fr}
-      .services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .contact-grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 640px){
-      .services-grid{grid-template-columns:1fr}
-      .navlinks{gap:12px}
-      .nav{flex-wrap:wrap}
-    }
-  </style>
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: 25%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-slide.placeholder {
+            background: linear-gradient(135deg, #1E4B99, #E74C3C);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            z-index: 100;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1E4B99 0%, #2c5aa0 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: #E74C3C;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #1E4B99;
+            font-weight: bold;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #E74C3C;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #1E4B99;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #1E4B99;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1E4B99;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1E4B99;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #1E4B99;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #163a7a;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1E4B99;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #E74C3C;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #E74C3C;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .main-content {
+                margin-top: 120px;
+            }
+
+            .carousel-section {
+                height: 250px;
+            }
+
+            .carousel-btn {
+                padding: 10px 15px;
+                font-size: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem 1rem;
+                margin: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header class="topbar" role="banner">
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="#welcome" aria-label="Accueil">
-        <img src="images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
-      </a>
-      <div class="navlinks">
-        <a href="#welcome">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="#team">Notre Équipe</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Welcome -->
-  <section id="welcome" class="welcome" aria-label="Bienvenue">
-    <div class="welcome-grid">
-      <div>
-        <h1>Bienvenue à la Maison des Familles</h1>
-        <p>Un lieu d'accueil, d'écoute et d'accompagnement pour les familles de Marseille, dans l'esprit de Saint François d'Assise.</p>
-      </div>
-
-      <!-- Carousel -->
-      <figure class="carousel" aria-roledescription="carrousel" aria-label="Galerie photos">
-        <div class="carousel-track" id="track"></div>
-        <button class="car-btn car-prev" aria-label="Photo précédente" id="prev">‹</button>
-        <button class="car-btn car-next" aria-label="Photo suivante" id="next">›</button>
-        <div class="dots" role="tablist" aria-label="Sélection de photo" id="dots"></div>
-      </figure>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" aria-label="Services">
-    <div class="wrap">
-      <h2 class="title">Nos services</h2>
-      <p class="sub">Accompagnement familial, soutien à la parentalité, médiation, ateliers éducatifs et orientation.</p>
-      <div class="grid services-grid">
-        <article class="card">
-          <h3>Accompagnement familial</h3>
-          <p>Entretiens individuels et familiaux, écoute active, plan d'actions concret.</p>
-        </article>
-        <article class="card">
-          <h3>Soutien à la parentalité</h3>
-          <p>Groupes de parole, ateliers (sommeil, écrans, fratrie), conseils personnalisés.</p>
-        </article>
-        <article class="card">
-          <h3>Médiation & conseil conjugal</h3>
-          <p>Prévention et gestion des conflits, espaces de dialogue apaisé.</p>
-        </article>
-        <article class="card">
-          <h3>Ateliers éducatifs</h3>
-          <p>Activités créatives et pédagogiques pour enfants et adolescents.</p>
-        </article>
-        <article class="card">
-          <h3>Prévention & formation</h3>
-          <p>Droits de l'enfant, non-violence éducative, repérage des situations à risque.</p>
-        </article>
-        <article class="card">
-          <h3>Accueil & orientation</h3>
-          <p>Premier accueil, évaluation des besoins, lien avec les partenaires du territoire.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team -->
-  <section id="team" class="team" aria-label="Notre équipe">
-    <div class="wrap">
-      <h2 class="title">Notre équipe</h2>
-      <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
-      <div class="grid team-grid">
-        <article class="member">
-          <img class="avatar" src="images/team/pro1.jpg" alt="Photo membre 1" />
-          <div class="name">Nom 1</div>
-          <div class="role">Fonction</div>
-          <p class="bio">Courte bio (3–4 lignes) présentant l'expérience et le rôle auprès des familles.</p>
-        </article>
-        <article class="member">
-          <img class="avatar" src="images/team/pro2.jpg" alt="Photo membre 2" />
-          <div class="name">Nom 2</div>
-          <div class="role">Fonction</div>
-          <p class="bio">Courte bio (spécialités, diplômes, cœur de mission).</p>
-        </article>
-        <article class="member">
-          <img class="avatar" src="images/team/pro3.jpg" alt="Photo membre 3" />
-          <div class="name">Nom 3</div>
-          <div class="role">Fonction</div>
-          <p class="bio">Courte bio (approches, années d'expérience, publics).</p>
-        </article>
-        <article class="member">
-          <img class="avatar" src="images/team/pro4.jpg" alt="Photo membre 4" />
-          <div class="name">Nom 4</div>
-          <div class="role">Fonction</div>
-          <p class="bio">Courte bio (missions, formations, inspirations).</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" aria-label="Contact">
-    <div class="wrap">
-      <h2 class="title">Nous contacter</h2>
-      <p class="sub">Réponse sous 24 h ouvrées.</p>
-      <div class="grid contact-grid">
-        <form class="card" action="#" method="POST">
-          <label>Nom<br><input name="nom" required></label>
-          <label>Email<br><input name="email" type="email" required></label>
-          <label>Message<br><textarea name="message" rows="5" required></textarea></label>
-          <button class="btn" type="submit">Envoyer</button>
-        </form>
-        <div class="card">
-          <h3 style="margin-top:0;color:var(--blue-900)">Infos</h3>
-          <p><strong>Adresse</strong><br>116 BOULEVARD VAUBAN, 13006 MARSEILLE</p>
-          <p><strong>Email</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
-          <p><strong>Téléphone</strong><br>04 91 XX XX XX (Lun–Ven : 9h–17h)</p>
-          <div class="note"><strong>Urgences :</strong> 3919 (Violences Femmes Info) · 119 (Allô Enfance en Danger)</div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="maison/images/logos/logo.png" alt="Maison des Familles Logo">
+                <h1>Maison des Familles</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#apropos">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Footer -->
-  <footer role="contentinfo">
-    <div class="foot">
-      <img src="images/logos/BLOGO.png" alt="Logo Maison des Familles" />
-      <small>© 2025 · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement</small>
-    </div>
-  </footer>
+    <!-- Main Content -->
+    <main class="main-content" id="accueil">
+        <!-- Carousel Section -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-slides" id="carouselSlides">
+                    <div class="carousel-slide active">
+                        <img src="maison/images/carousel/image1.jpg" alt="Maison des Familles - Activités" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Activités et Services</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/image2.jpg" alt="Maison des Familles - Services" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Accompagnement Familial</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/image3.jpg" alt="Maison des Familles - Équipe" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Notre Équipe</div>';">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="maison/images/carousel/image4.jpg" alt="Maison des Familles - Locaux" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<div>Nos Locaux</div>';">
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-btn next" onclick="changeSlide(1)">›</button>
+                
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </section>
 
-  <!-- Carousel JavaScript -->
-  <script>
-    const track = document.getElementById('track');
-    const dotsWrap = document.getElementById('dots');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Bienvenue à la Maison des Familles</h2>
+            <p>Un lieu d'écoute, d'accompagnement et de soutien pour toutes les familles marseillaises</p>
+            <a href="#contact" class="cta-button">Nous Contacter</a>
+        </section>
 
-    const MAX = 10;
-    const basePath = 'images/carousel'; // Fixed path
-    const exts = ['jpg','JPG','jpeg','JPEG','png','PNG'];
-    const slides = [];
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <h2>Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Accompagnement Social</h3>
+                    <p>Soutien personnalisé pour les familles en difficulté sociale, administrative ou financière.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Médiation Familiale</h3>
+                    <p>Aide à la résolution des conflits familiaux dans un cadre bienveillant et neutre.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ateliers Parents-Enfants</h3>
+                    <p>Activités ludiques et éducatives pour renforcer les liens familiaux.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Soutien à la Parentalité</h3>
+                    <p>Accompagnement et conseils pour les parents dans leur rôle éducatif.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Aide Administrative</h3>
+                    <p>Assistance dans les démarches administratives et l'accès aux droits.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Groupes de Parole</h3>
+                    <p>Espaces d'échange et de partage d'expériences entre familles.</p>
+                </div>
+            </div>
+        </section>
 
-    function probe(src, ok, fail){
-      const img = new Image();
-      img.onload = () => ok(img);
-      img.onerror = fail;
-      img.src = src + `?v=${Date.now()}`; // cache-bust
-    }
+        <!-- About Section -->
+        <section class="section" id="apropos">
+            <h2>À Propos de Nous</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Notre Mission</h3>
+                    <p>La Maison des Familles de Marseille est un lieu d'accueil, d'écoute et d'accompagnement pour toutes les familles, quelles que soient leurs difficultés ou leurs questionnements.</p>
+                    
+                    <h3>Notre Équipe</h3>
+                    <p>Une équipe pluridisciplinaire composée de travailleurs sociaux, psychologues, médiateurs familiaux et bénévoles formés, tous unis par la même volonté d'aider les familles.</p>
+                    
+                    <h3>Nos Valeurs</h3>
+                    <p>Bienveillance, respect, confidentialité et non-jugement sont au cœur de notre approche. Nous croyons en la capacité de chaque famille à surmonter ses difficultés.</p>
+                </div>
+                <div class="about-image">
+                    <img src="maison/images/about-placeholder.jpg" alt="Notre équipe" onerror="this.style.display='none';">
+                </div>
+            </div>
+        </section>
 
-    function findExisting(n, done){
-      let i = 0;
-      (function tryNext(){
-        if (i >= exts.length) return done(null);
-        const src = `${basePath}/img_${n}.${exts[i++]}`;
-        probe(src, (img)=>done(img), tryNext);
-      })();
-    }
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Nous Contacter</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prenom">Prénom *</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telephone">Téléphone</label>
+                        <input type="tel" id="telephone" name="telephone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service concerné</label>
+                        <select id="service" name="service">
+                            <option value="">Choisir un service</option>
+                            <option value="accompagnement">Accompagnement Social</option>
+                            <option value="mediation">Médiation Familiale</option>
+                            <option value="ateliers">Ateliers Parents-Enfants</option>
+                            <option value="parentalite">Soutien à la Parentalité</option>
+                            <option value="administratif">Aide Administrative</option>
+                            <option value="groupes">Groupes de Parole</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Décrivez votre situation ou vos besoins..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Envoyer le Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-    let pending = MAX, found = 0;
-    for(let n=1;n<=MAX;n++){
-      findExisting(n, (img)=>{
-        if(img){
-          img.alt = `Image ${n}`;
-          slides.push(img);
-          track.appendChild(img);
-          found++;
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📍 123 Avenue de la République<br>13013 Marseille</p>
+                <p>📞 04 91 XX XX XX</p>
+                <p>✉️ contact@maisonfamilles-marseille.fr</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horaires</h3>
+                <p>Lundi - Vendredi: 9h - 17h</p>
+                <p>Samedi: 9h - 12h</p>
+                <p>Dimanche: Fermé</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Maison des Familles Marseille. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Move carousel
+            const slidesContainer = document.getElementById('carouselSlides');
+            slidesContainer.style.transform = `translateX(-${index * 25}%)`;
         }
-        if(--pending === 0) finalize();
-      });
-    }
 
-    function finalize(){
-      if(found === 0){
-        track.innerHTML =
-          '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6;font-size:14px;text-align:center;padding:20px">Ajoutez des images nommées <code>img_1.jpg</code>, <code>img_2.jpg</code>, etc. dans le dossier <code>images/carousel/</code></div>';
-        return;
-      }
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+            
+            showSlide(currentSlideIndex);
+        }
 
-      // Set track width and each slide width so translateX(-100%) moves exactly one slide.
-      track.style.width = `${slides.length * 100}%`;
-      slides.forEach(im => { im.style.width = `${100 / slides.length}%`; });
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
 
-      // Build dots
-      slides.forEach((_,idx)=>{
-        const b=document.createElement('button');
-        b.className='dot'+(idx===0?' active':'');
-        b.type='button';
-        b.setAttribute('aria-label',`Aller à la photo ${idx+1}`);
-        b.addEventListener('click',()=>go(idx));
-        dotsWrap.appendChild(b);
-      });
+        // Auto-advance carousel
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
 
-      go(0);
-      timer = setInterval(()=>go(i+1), 5000);
-    }
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const prenom = document.getElementById('prenom').value;
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!prenom || !nom || !email || !message) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Veuillez entrer une adresse email valide.');
+                return;
+            }
+            
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+            this.reset();
+        });
 
-    let i=0, timer;
-    function go(n){
-      if(!slides.length) return;
-      i=(n+slides.length)%slides.length;
-      track.style.transform=`translateX(${-i*100}%)`;
-      dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
-    }
-    
-    prev?.addEventListener('click',()=>go(i-1));
-    next?.addEventListener('click',()=>go(i+1));
-    
-    [prev,next,track].forEach(el=>{
-      el?.addEventListener('mouseenter',()=>clearInterval(timer));
-      el?.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000));
-    });
-  </script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Hover effects for cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Logo loading
+        function loadLogo() {
+            const logoElement = document.querySelector('.logo img');
+            if (logoElement) {
+                logoElement.onerror = function() {
+                    // Fallback to placeholder if logo fails to load
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iMTAiIGZpbGw9IiMxRTRCOTkiLz4KPHRleHQgeD0iMjUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TUY8L3RleHQ+Cjwvc3ZnPg==';
+                };
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadLogo();
+            showSlide(0); // Initialize carousel
+        });
+    </script>
 </body>
 </html>
