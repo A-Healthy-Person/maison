@@ -36,6 +36,21 @@ section{padding:56px 20px}
 .welcome p{color:#374151;margin:0 0 14px;max-width:60ch}
 
 /* Carousel */
+.photo-row {
+  display: flex;
+  flex-wrap: wrap; /* if screen is too small, photos wrap */
+  gap: 10px;       /* spacing between images */
+  justify-content: center; /* center the row */
+  margin-top: 20px;
+}
+
+.photo-row img {
+  width: 150px;    /* fixed width for consistency */
+  height: 100px;   /* fixed height */
+  object-fit: cover; /* crop to keep proportion nicely */
+  border-radius: 8px; /* optional rounded corners */
+}
+
 .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#e5e7eb}
 .carousel-track{display:flex;transition:transform .5s ease}
 .carousel img{width:100%;height:380px;object-fit:cover;display:block}
