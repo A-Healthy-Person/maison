@@ -10,14 +10,15 @@
     :root{
       --blue:#005BBB;       /* bright royal blue */
       --blue-900:#003F88;   /* dark accent blue */
-      --coral:#FF4438;      /* bright coral/red from logo */
+      --coral:#FF4438;      /* bright coral/red */
       --ink:#1f2937;        /* neutral text */
       --muted:#6b7280;      /* secondary text */
       --bg:#ffffff;
-      --soft:#f0f6ff;       /* soft blue section bg */
+      --soft:#f0f6ff;       /* soft blue background */
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.08);
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
@@ -26,12 +27,11 @@
     .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb}
     .nav{max-width:1160px;margin:auto;display:flex;align-items:center;gap:24px;padding:12px 20px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand img{height:auto;width:clamp(170px, 20vw, 280px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
-    .navlinks{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
-    .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:700;padding:8px 10px;border-radius:10px}
+    /* reduced ~30% from earlier size */
+    .brand img{height:auto;width:clamp(120px, 14vw, 200px);display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+    .navlinks{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
+    .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:800;padding:8px 10px;border-radius:10px;font-size:1.05rem}
     .navlinks a:hover{background:var(--soft)}
-    .navlinks a.cta{background:var(--coral);color:#fff}
-    .navlinks a.cta:hover{opacity:.95}
 
     /* ===== Sections ===== */
     section{padding:56px 20px}
@@ -43,22 +43,25 @@
     .welcome{background:linear-gradient(0deg, rgba(0,91,187,.07), rgba(0,91,187,.07)), #fff}
     .welcome-grid{max-width:1160px;margin:auto;display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center;padding:24px 20px}
     .welcome h1{font-size:clamp(28px,3.2vw,46px);line-height:1.15;margin:0 0 10px;color:var(--blue-900)}
-    .welcome p{color:#374151;margin:0 0 18px;max-width:60ch}
-    .btn{display:inline-block;background:var(--blue);color:#fff;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;box-shadow:var(--shadow)}
-    .btn.alt{background:var(--coral)}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .quick-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .quick-links a{display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800;border:2px solid var(--blue);color:var(--blue-900);background:#fff}
-    .quick-links a:hover{background:var(--soft)}
+    .welcome p{color:#374151;margin:0 0 14px;max-width:60ch}
+    .inline-links{margin-top:6px}
+    .inline-links a{color:var(--blue);text-decoration:none;font-weight:800}
+    .inline-links a:hover{text-decoration:underline}
 
     /* ===== Carousel (right column) ===== */
     .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#e5e7eb}
     .carousel-track{display:flex;transition:transform .5s ease}
+    .carousel-track > *{flex:0 0 100%} /* each slide exactly 100% width */
     .carousel img{width:100%;height:380px;object-fit:cover;display:block}
-    .car-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer}
-    .car-prev{left:8px}.car-next{right:8px}
+    .car-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(0,0,0,.55);border:none;color:#fff;
+      width:52px;height:52px;border-radius:50%;cursor:pointer;
+      font-size:28px;line-height:1;display:flex;align-items:center;justify-content:center
+    }
+    .car-prev{left:10px}.car-next{right:10px}
     .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
-    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.25)}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.25)}
     .dot.active{background:#fff}
 
     /* ===== Services ===== */
@@ -85,7 +88,7 @@
     /* ===== Footer ===== */
     footer{background:#0b1533;color:#e5e7eb}
     footer .foot{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 20px}
-    footer img{width:200px;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+    footer img{width:180px;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
 
     /* ===== Responsive ===== */
     @media (max-width: 1020px){
@@ -105,14 +108,14 @@
   <header class="topbar" role="banner">
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="#welcome" aria-label="Accueil">
-        <!-- Uses /images/logos/BLOGO.png -->
+        <!-- Header logo (reduced) -->
         <img src="images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
       </a>
       <div class="navlinks">
         <a href="#welcome">Accueil</a>
         <a href="#services">Services</a>
         <a href="#team">Notre Équipe</a>
-        <a href="#contact" class="cta">Contact</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
@@ -123,15 +126,8 @@
       <div>
         <h1>Bienvenue à la Maison des Familles</h1>
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
-        <div class="cta-row">
-          <a class="btn alt" href="#contact">Nous contacter</a>
-          <a class="btn" href="#services">Découvrir nos services</a>
-        </div>
-        <!-- Quick links requested: Services + Notre Équipe highlighted right on the landing -->
-        <div class="quick-links" aria-label="Accès rapide">
-          <a href="#services">→ Nos services</a>
-          <a href="#team">→ Notre équipe</a>
-        </div>
+        <!-- Buttons removed as requested; simple inline links instead -->
+        <p class="inline-links">→ <a href="#services">Nos services</a> · <a href="#team">Notre équipe</a> · <a href="#contact">Contact</a></p>
       </div>
 
       <!-- Carousel -->
@@ -204,7 +200,7 @@
           <label>Nom<br><input name="nom" required></label>
           <label>Email<br><input name="email" type="email" required></label>
           <label>Message<br><textarea name="message" rows="5" required></textarea></label>
-          <button class="btn" type="submit">Envoyer</button>
+          <button class="btn" type="submit" style="background:var(--coral)">Envoyer</button>
         </form>
         <div class="card">
           <h3 style="margin-top:0;color:var(--blue-900)">Infos</h3>
@@ -225,7 +221,7 @@
     </div>
   </footer>
 
-  <!-- ===== Carousel JS (robust: tries maison/… and images/…, supports jpg/JPG/jpeg/png) ===== -->
+  <!-- ===== Carousel JS (LOCKED to maison/images/carousel/, robust extensions) ===== -->
   <script>
     const track = document.getElementById('track');
     const dotsWrap = document.getElementById('dots');
@@ -233,30 +229,23 @@
     const next = document.getElementById('next');
 
     const MAX = 10;
-    const basePaths = ['maison/images/carousel', 'images/carousel']; // tries both
-    const exts = ['jpg','JPG','jpeg','png'];                         // accepts these
+    const basePath = 'maison/images/carousel';         // locked here
+    const exts = ['jpg','JPG','jpeg','JPEG','png','PNG']; // allowed
     const slides = [];
 
     function probe(src, ok, fail){
       const img = new Image();
       img.onload = () => ok(img);
       img.onerror = fail;
-      img.src = src + `?v=${Date.now()}`; // cache-bust
+      img.src = src + `?v=${Date.now()}`; // cache-bust to avoid stale 404s
     }
 
     function findExisting(n, done){
-      let bi = 0, ei = 0;
+      let i = 0;
       (function tryNext(){
-        if (bi >= basePaths.length) return done(null);
-        const src = `${basePaths[bi]}/img_${n}.${exts[ei]}`;
-        probe(src,
-          (img)=>done(img),
-          ()=>{
-            ei++;
-            if (ei >= exts.length){ ei = 0; bi++; }
-            tryNext();
-          }
-        );
+        if (i >= exts.length) return done(null);
+        const src = `${basePath}/img_${n}.${exts[i++]}`;
+        probe(src, (img)=>done(img), tryNext);
       })();
     }
 
@@ -276,12 +265,9 @@
     function finalize(){
       if(found === 0){
         track.innerHTML =
-          '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez des images nommées <code>img_1.jpg</code>… dans <code>images/carousel/</code> ou <code>maison/images/carousel/</code>.</div>';
+          '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez des images nommées <code>img_1.jpg</code>… dans <code>maison/images/carousel/</code>.</div>';
         return;
       }
-      track.style.width = `${slides.length*100}%`;
-      slides.forEach(im=>im.style.width = `${100/slides.length}%`);
-
       // dots
       slides.forEach((_,idx)=>{
         const b=document.createElement('button');
@@ -291,7 +277,6 @@
         b.addEventListener('click',()=>go(idx));
         dotsWrap.appendChild(b);
       });
-
       go(0);
       timer = setInterval(()=>go(i+1), 5000);
     }
