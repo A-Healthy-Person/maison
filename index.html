@@ -47,6 +47,9 @@
     .btn{display:inline-block;background:var(--blue);color:#fff;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:800;box-shadow:var(--shadow)}
     .btn.alt{background:var(--coral)}
     .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .quick-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .quick-links a{display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800;border:2px solid var(--blue);color:var(--blue-900);background:#fff}
+    .quick-links a:hover{background:var(--soft)}
 
     /* ===== Carousel (right column) ===== */
     .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#e5e7eb}
@@ -102,7 +105,7 @@
   <header class="topbar" role="banner">
     <nav class="nav" aria-label="Navigation principale">
       <a class="brand" href="#welcome" aria-label="Accueil">
-        <!-- Logo path as you requested -->
+        <!-- Uses /images/logos/BLOGO.png -->
         <img src="images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
       </a>
       <div class="navlinks">
@@ -121,8 +124,13 @@
         <h1>Bienvenue à la Maison des Familles</h1>
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
         <div class="cta-row">
-          <a class="btn" href="#contact">Nous contacter</a>
-          <a class="btn alt" href="#services">Découvrir nos services</a>
+          <a class="btn alt" href="#contact">Nous contacter</a>
+          <a class="btn" href="#services">Découvrir nos services</a>
+        </div>
+        <!-- Quick links requested: Services + Notre Équipe highlighted right on the landing -->
+        <div class="quick-links" aria-label="Accès rapide">
+          <a href="#services">→ Nos services</a>
+          <a href="#team">→ Notre équipe</a>
         </div>
       </div>
 
@@ -144,7 +152,7 @@
       <div class="grid services-grid">
         <article class="card"><h3>Accompagnement familial</h3><p>Entretiens individuels et familiaux, écoute active, plan d’actions concret.</p></article>
         <article class="card"><h3>Soutien à la parentalité</h3><p>Groupes de parole, ateliers (sommeil, écrans, fratrie), conseils personnalisés.</p></article>
-        <article class="card"><h3>Médiation & conseil conjugal</h3><p>Prévention/gestion des conflits, espaces de dialogue apaisé.</p></article>
+        <article class="card"><h3>Médiation & conseil conjugal</h3><p>Prévention et gestion des conflits, espaces de dialogue apaisé.</p></article>
         <article class="card"><h3>Ateliers éducatifs</h3><p>Activités créatives et pédagogiques pour enfants et adolescents.</p></article>
         <article class="card"><h3>Prévention & formation</h3><p>Droits de l’enfant, non-violence éducative, repérage des situations à risque.</p></article>
         <article class="card"><h3>Accueil & orientation</h3><p>Premier accueil, évaluation des besoins, lien avec les partenaires du territoire.</p></article>
@@ -217,84 +225,90 @@
     </div>
   </footer>
 
-  <!-- ===== Carousel JS (auto-detects img_1.jpg … img_10.jpg) ===== -->
+  <!-- ===== Carousel JS (robust: tries maison/… and images/…, supports jpg/JPG/jpeg/png) ===== -->
   <script>
-  const track = document.getElementById('track');
-  const dotsWrap = document.getElementById('dots');
-  const prev = document.getElementById('prev');
-  const next = document.getElementById('next');
+    const track = document.getElementById('track');
+    const dotsWrap = document.getElementById('dots');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
 
-  const MAX = 10;
-  const exts = ['jpg','JPG','jpeg','png']; // try these suffixes
-  const slides = [];
+    const MAX = 10;
+    const basePaths = ['maison/images/carousel', 'images/carousel']; // tries both
+    const exts = ['jpg','JPG','jpeg','png'];                         // accepts these
+    const slides = [];
 
-  function tryOne(src, onSuccess, onFail){
-    const img = new Image();
-    img.onload = () => onSuccess(img);
-    img.onerror = onFail;
-    img.src = src + `?v=${Date.now()}`; // cache-bust
-  }
-
-  function findFile(base, cb){
-    let i = 0;
-    (function nextExt(){
-      if(i >= exts.length) return cb(null);
-      const src = `${base}.${exts[i++]}`;
-      tryOne(src, (img)=>cb(img), nextExt);
-    })();
-  }
-
-  let pending = MAX, found = 0;
-  for(let n=1;n<=MAX;n++){
-    const base = `images/carousel/img_${n}`;
-    findFile(base, (img)=>{
-      if(img){
-        img.alt = `Image ${n}`;
-        slides.push(img);
-        track.appendChild(img);
-        found++;
-      }
-      if(--pending === 0) finalize();
-    });
-  }
-
-  function finalize(){
-    if(found === 0){
-      track.innerHTML =
-        '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez vos images dans <code>images/carousel/</code> (ex. img_1.jpg)</div>';
-      return;
+    function probe(src, ok, fail){
+      const img = new Image();
+      img.onload = () => ok(img);
+      img.onerror = fail;
+      img.src = src + `?v=${Date.now()}`; // cache-bust
     }
-    track.style.width = `${slides.length*100}%`;
-    slides.forEach(im=>im.style.width = `${100/slides.length}%`);
 
-    // dots
-    slides.forEach((_,idx)=>{
-      const b=document.createElement('button');
-      b.className='dot'+(idx===0?' active':'');
-      b.type='button';
-      b.setAttribute('aria-label',`Aller à la photo ${idx+1}`);
-      b.addEventListener('click',()=>go(idx));
-      dotsWrap.appendChild(b);
+    function findExisting(n, done){
+      let bi = 0, ei = 0;
+      (function tryNext(){
+        if (bi >= basePaths.length) return done(null);
+        const src = `${basePaths[bi]}/img_${n}.${exts[ei]}`;
+        probe(src,
+          (img)=>done(img),
+          ()=>{
+            ei++;
+            if (ei >= exts.length){ ei = 0; bi++; }
+            tryNext();
+          }
+        );
+      })();
+    }
+
+    let pending = MAX, found = 0;
+    for(let n=1;n<=MAX;n++){
+      findExisting(n, (img)=>{
+        if(img){
+          img.alt = `Image ${n}`;
+          slides.push(img);
+          track.appendChild(img);
+          found++;
+        }
+        if(--pending === 0) finalize();
+      });
+    }
+
+    function finalize(){
+      if(found === 0){
+        track.innerHTML =
+          '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez des images nommées <code>img_1.jpg</code>… dans <code>images/carousel/</code> ou <code>maison/images/carousel/</code>.</div>';
+        return;
+      }
+      track.style.width = `${slides.length*100}%`;
+      slides.forEach(im=>im.style.width = `${100/slides.length}%`);
+
+      // dots
+      slides.forEach((_,idx)=>{
+        const b=document.createElement('button');
+        b.className='dot'+(idx===0?' active':'');
+        b.type='button';
+        b.setAttribute('aria-label',`Aller à la photo ${idx+1}`);
+        b.addEventListener('click',()=>go(idx));
+        dotsWrap.appendChild(b);
+      });
+
+      go(0);
+      timer = setInterval(()=>go(i+1), 5000);
+    }
+
+    let i=0, timer;
+    function go(n){
+      if(!slides.length) return;
+      i=(n+slides.length)%slides.length;
+      track.style.transform=`translateX(${-i*100}%)`;
+      dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
+    }
+    prev?.addEventListener('click',()=>go(i-1));
+    next?.addEventListener('click',()=>go(i+1));
+    [prev,next,track].forEach(el=>{
+      el?.addEventListener('mouseenter',()=>clearInterval(timer));
+      el?.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000));
     });
-
-    go(0);
-    timer = setInterval(()=>go(i+1), 5000);
-  }
-
-  let i=0, timer;
-  function go(n){
-    if(!slides.length) return;
-    i=(n+slides.length)%slides.length;
-    track.style.transform=`translateX(${-i*100}%)`;
-    dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
-  }
-  prev?.addEventListener('click',()=>go(i-1));
-  next?.addEventListener('click',()=>go(i+1));
-  [prev,next,track].forEach(el=>{
-    el?.addEventListener('mouseenter',()=>clearInterval(timer));
-    el?.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000));
-  });
-</script>
-
+  </script>
 </body>
 </html>
