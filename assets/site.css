@@ -23,6 +23,52 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvet
 .navlinks a{color:var(--blue-900);text-decoration:none;font-weight:800;padding:8px 10px;border-radius:10px;font-size:1.05rem;white-space:nowrap}
 .navlinks a:hover{background:var(--soft)}
 
+/* Shared horizontal padding so logo and content align */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Optional: keep header tidy */
+.topbar {
+  border-bottom: 1px solid #eee;
+}
+
+/* Welcome subheading spacing */
+.welcome-section .subheading {
+  margin-top: 0.25rem;
+  color: #555;
+}
+
+/* Photo row layout */
+.photo-row {
+  display: flex;
+  flex-wrap: wrap;      /* wraps on small screens */
+  gap: 10px;
+  justify-content: flex-start;  /* left aligned (matches logo left edge) */
+  margin-top: 20px;
+}
+
+/* Uniform image sizing */
+.photo-row img {
+  width: 150px;         /* adjust if you want bigger/smaller */
+  height: 100px;
+  object-fit: cover;    /* crops edges to keep a neat grid */
+  border-radius: 8px;   /* optional, for softer corners */
+  display: block;
+}
+
+/* Optional: small screens—reduce size a bit */
+@media (max-width: 480px) {
+  .photo-row img {
+    width: 120px;
+    height: 80px;
+  }
+}
+
+
 /* Sections */
 section{padding:56px 20px}
 .wrap{max-width:1160px;margin:auto}
