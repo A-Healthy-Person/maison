@@ -4,8 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison des Familles – Saint François d'Assise</title>
-  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
+  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d’Assise à Marseille." />
   <link rel="stylesheet" href="/assets/site.css?v=6" />
+
+  <!-- Gallery + Lightbox minimal styles (safe to keep alongside site.css) -->
+  <style>
+    /* Thumbnails in the welcome gallery */
+    .welcome-gallery {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      align-items: start;
+    }
+    .welcome-gallery .thumb {
+      display:block; position:relative; overflow:hidden; border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,.15); background:#eee; cursor:zoom-in;
+    }
+    .welcome-gallery img {
+      width:100%; height:auto; display:block; object-fit:cover;
+      transition: transform .25s ease;
+    }
+    .welcome-gallery .thumb:hover img { transform: scale(1.02); }
+
+    /* Lightbox */
+    .lightbox {
+      position:fixed; inset:0; display:none; place-items:center;
+      background:rgba(0,0,0,.9); z-index:9999;
+    }
+    .lightbox.open { display:grid; }
+    .lightbox__stage { position:relative; max-width:min(96vw,1400px); max-height:90vh; }
+    .lightbox__img { max-width:96vw; max-height:90vh; width:auto; height:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.5); }
+    .lightbox__caption { text-align:center; color:#ddd; margin-top:10px; font-size:14px; }
+
+    .lightbox__close, .lightbox__nav {
+      position:absolute; background:rgba(255,255,255,.15); color:#fff; border:none;
+      border-radius:999px; width:42px; height:42px; display:grid; place-items:center; cursor:pointer;
+    }
+    .lightbox__close { top:18px; right:18px; }
+    .lightbox__prev { top:50%; left:18px; transform:translateY(-50%); font-size:20px; }
+    .lightbox__next { top:50%; right:18px; transform:translateY(-50%); font-size:20px; }
+
+    @media (max-width:700px){
+      .lightbox__prev { left:10px; }
+      .lightbox__next { right:10px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -30,15 +73,29 @@
       <div>
         <h1>Bienvenue à la Maison des Familles</h1>
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
+        <p style="color:#555;margin-top:.5rem;">Cliquez sur une photo pour l’agrandir.</p>
       </div>
 
       <div class="welcome-gallery" aria-label="Galerie photos">
-        <img src="/images/carousel/img_1.jpg" alt="Photo 1" loading="lazy">
-        <img src="/images/carousel/img_2.jpg" alt="Photo 2" loading="lazy">
-        <img src="/images/carousel/img_3.jpg" alt="Photo 3" loading="lazy">
-        <img src="/images/carousel/img_4.jpg" alt="Photo 4" loading="lazy">
-        <img src="/images/carousel/img_5.jpg" alt="Photo 5" loading="lazy">
-        <img src="/images/carousel/img_6.jpg" alt="Photo 6" loading="lazy">
+        <!-- Turned images into anchors with data-index so the lightbox knows which to open -->
+        <a class="thumb" href="/images/carousel/img_1.jpg" data-index="1" aria-label="Ouvrir la photo 1">
+          <img src="/images/carousel/img_1.jpg" alt="Photo 1" loading="lazy">
+        </a>
+        <a class="thumb" href="/images/carousel/img_2.jpg" data-index="2" aria-label="Ouvrir la photo 2">
+          <img src="/images/carousel/img_2.jpg" alt="Photo 2" loading="lazy">
+        </a>
+        <a class="thumb" href="/images/carousel/img_3.jpg" data-index="3" aria-label="Ouvrir la photo 3">
+          <img src="/images/carousel/img_3.jpg" alt="Photo 3" loading="lazy">
+        </a>
+        <a class="thumb" href="/images/carousel/img_4.jpg" data-index="4" aria-label="Ouvrir la photo 4">
+          <img src="/images/carousel/img_4.jpg" alt="Photo 4" loading="lazy">
+        </a>
+        <a class="thumb" href="/images/carousel/img_5.jpg" data-index="5" aria-label="Ouvrir la photo 5">
+          <img src="/images/carousel/img_5.jpg" alt="Photo 5" loading="lazy">
+        </a>
+        <a class="thumb" href="/images/carousel/img_6.jpg" data-index="6" aria-label="Ouvrir la photo 6">
+          <img src="/images/carousel/img_6.jpg" alt="Photo 6" loading="lazy">
+        </a>
       </div>
     </div>
   </section>
@@ -142,5 +199,84 @@
       <small>© 2025 · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement</small>
     </div>
   </footer>
+
+  <!-- Lightbox markup (kept at end of body) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse d’images">
+    <button class="lightbox__close" id="lbClose" aria-label="Fermer (Échap)">✕</button>
+    <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="Précédent (←)">❮</button>
+    <div class="lightbox__stage">
+      <img id="lbImg" class="lightbox__img" src="" alt="">
+      <div id="lbCaption" class="lightbox__caption"></div>
+    </div>
+    <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="Suivant (→)">❯</button>
+  </div>
+
+  <!-- Lightbox script -->
+  <script>
+    (function(){
+      const COUNT = 34;                  // total images available
+      const base = "/images/carousel/img_";
+      const ext  = ".jpg";
+
+      const gallery   = document.querySelector(".welcome-gallery");
+      const lb        = document.getElementById("lightbox");
+      const lbImg     = document.getElementById("lbImg");
+      const lbCaption = document.getElementById("lbCaption");
+      const btnPrev   = document.getElementById("lbPrev");
+      const btnNext   = document.getElementById("lbNext");
+      const btnClose  = document.getElementById("lbClose");
+
+      let index = 1;
+
+      function openLightbox(n){
+        index = n; updateImage();
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox(){
+        lb.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function updateImage(){
+        lbImg.src = `${base}${index}${ext}`;
+        lbImg.alt = `Photo ${index}`;
+        lbCaption.textContent = `Photo ${index} / ${COUNT}`;
+        // Preload neighbors for smoother nav
+        const nextImg = new Image(); nextImg.src = `${base}${(index % COUNT) + 1}${ext}`;
+        const prevImg = new Image(); prevImg.src = `${base}${(index - 2 + COUNT) % COUNT + 1}${ext}`;
+      }
+      function next(){ index = index % COUNT + 1; updateImage(); }
+      function prev(){ index = (index - 2 + COUNT) % COUNT + 1; updateImage(); }
+
+      // Open from any thumbnail in the welcome gallery
+      gallery.addEventListener("click", (e) => {
+        const a = e.target.closest("a.thumb");
+        if(!a) return;
+        e.preventDefault();
+        const n = parseInt(a.dataset.index, 10) || 1;
+        openLightbox(n);
+      });
+
+      // Controls
+      btnClose.addEventListener("click", closeLightbox);
+      btnNext.addEventListener("click", next);
+      btnPrev.addEventListener("click", prev);
+
+      // Close on backdrop click (outside image and buttons)
+      lb.addEventListener("click", (e) => {
+        const onStage = e.target.closest(".lightbox__stage");
+        const onBtn = e.target.closest("button");
+        if(!onStage && !onBtn) closeLightbox();
+      });
+
+      // Keyboard support
+      window.addEventListener("keydown", (e) => {
+        if(!lb.classList.contains("open")) return;
+        if(e.key === "Escape") closeLightbox();
+        if(e.key === "ArrowRight") next();
+        if(e.key === "ArrowLeft") prev();
+      });
+    })();
+  </script>
 </body>
 </html>
