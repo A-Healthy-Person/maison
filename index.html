@@ -219,62 +219,82 @@
 
   <!-- ===== Carousel JS (auto-detects img_1.jpg … img_10.jpg) ===== -->
   <script>
-    const track = document.getElementById('track');
-    const dotsWrap = document.getElementById('dots');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
+  const track = document.getElementById('track');
+  const dotsWrap = document.getElementById('dots');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
 
-    const candidates = Array.from({length:10}, (_,i)=>`images/carousel/img_${i+1}.jpg`);
-    const slides = [];
+  const MAX = 10;
+  const exts = ['jpg','JPG','jpeg','png']; // try these suffixes
+  const slides = [];
 
-    function addSlide(src, alt){
-      const img = document.createElement('img');
-      img.src = src; img.alt = alt;
-      slides.push(img); track.appendChild(img);
-    }
+  function tryOne(src, onSuccess, onFail){
+    const img = new Image();
+    img.onload = () => onSuccess(img);
+    img.onerror = onFail;
+    img.src = src + `?v=${Date.now()}`; // cache-bust
+  }
 
-    let pending=candidates.length;
-    candidates.forEach((src,i)=>{
-      const probe = new Image();
-      probe.onload=()=>{addSlide(src, `Image ${i+1}`); finalize();};
-      probe.onerror=finalize;
-      probe.src = src + `?v=${Date.now()}`; // cache-bust
-    });
+  function findFile(base, cb){
+    let i = 0;
+    (function nextExt(){
+      if(i >= exts.length) return cb(null);
+      const src = `${base}.${exts[i++]}`;
+      tryOne(src, (img)=>cb(img), nextExt);
+    })();
+  }
 
-    function finalize(){
-      if(--pending) return;
-      if(slides.length===0){
-        track.innerHTML='<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez vos images dans <code>images/carousel/</code></div>';
-        return;
+  let pending = MAX, found = 0;
+  for(let n=1;n<=MAX;n++){
+    const base = `images/carousel/img_${n}`;
+    findFile(base, (img)=>{
+      if(img){
+        img.alt = `Image ${n}`;
+        slides.push(img);
+        track.appendChild(img);
+        found++;
       }
-      track.style.width = `${slides.length*100}%`;
-      slides.forEach(im=>im.style.width = `${100/slides.length}%`);
-      // dots
-      slides.forEach((_,idx)=>{
-        const b=document.createElement('button');
-        b.className='dot'+(idx===0?' active':'');
-        b.type='button';
-        b.setAttribute('aria-label',`Aller à la photo ${idx+1}`);
-        b.addEventListener('click',()=>go(idx));
-        dotsWrap.appendChild(b);
-      });
-      go(0);
-      timer=setInterval(()=>go(i+1),5000);
-    }
-
-    let i=0, timer;
-    function go(n){
-      if(!slides.length) return;
-      i=(n+slides.length)%slides.length;
-      track.style.transform=`translateX(${-i*100}%)`;
-      dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
-    }
-    prev?.addEventListener('click',()=>go(i-1));
-    next?.addEventListener('click',()=>go(i+1));
-    [prev,next,track].forEach(el=>{
-      el?.addEventListener('mouseenter',()=>clearInterval(timer));
-      el?.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000));
+      if(--pending === 0) finalize();
     });
-  </script>
+  }
+
+  function finalize(){
+    if(found === 0){
+      track.innerHTML =
+        '<div style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;color:#555;background:#f3f4f6">Ajoutez vos images dans <code>images/carousel/</code> (ex. img_1.jpg)</div>';
+      return;
+    }
+    track.style.width = `${slides.length*100}%`;
+    slides.forEach(im=>im.style.width = `${100/slides.length}%`);
+
+    // dots
+    slides.forEach((_,idx)=>{
+      const b=document.createElement('button');
+      b.className='dot'+(idx===0?' active':'');
+      b.type='button';
+      b.setAttribute('aria-label',`Aller à la photo ${idx+1}`);
+      b.addEventListener('click',()=>go(idx));
+      dotsWrap.appendChild(b);
+    });
+
+    go(0);
+    timer = setInterval(()=>go(i+1), 5000);
+  }
+
+  let i=0, timer;
+  function go(n){
+    if(!slides.length) return;
+    i=(n+slides.length)%slides.length;
+    track.style.transform=`translateX(${-i*100}%)`;
+    dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
+  }
+  prev?.addEventListener('click',()=>go(i-1));
+  next?.addEventListener('click',()=>go(i+1));
+  [prev,next,track].forEach(el=>{
+    el?.addEventListener('mouseenter',()=>clearInterval(timer));
+    el?.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000));
+  });
+</script>
+
 </body>
 </html>
