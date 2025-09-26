@@ -15,16 +15,20 @@
       gap: 12px;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       align-items: start;
+      padding-top: 14px;
     }
-    .welcome-gallery .thumb {
-      display:block; position:relative; overflow:hidden; border-radius:8px;
-      box-shadow:0 2px 6px rgba(0,0,0,.15); background:#eee; cursor:zoom-in;
-    }
-    .welcome-gallery img {
-      width:100%; height:auto; display:block; object-fit:cover;
+    /* Make thumbnails consistent size */
+    .welcome-gallery img{
+      width:100%;
+      height:160px;       /* adjust 140–220px as you like */
+      object-fit:cover;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,.15);
+      display:block;
       transition: transform .25s ease;
+      cursor: zoom-in;
     }
-    .welcome-gallery .thumb:hover img { transform: scale(1.02); }
+    .welcome-gallery img:hover { transform: scale(1.02); }
 
     /* Lightbox */
     .lightbox {
@@ -67,7 +71,7 @@
     </nav>
   </header>
 
-  <!-- Welcome (text left, gallery right) -->
+  <!-- Welcome (text first) -->
   <section id="welcome" class="welcome" aria-label="Bienvenue">
     <div class="welcome-grid">
       <div>
@@ -75,17 +79,18 @@
         <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
         <p style="color:#555;margin-top:.5rem;">Cliquez sur une photo pour l’agrandir.</p>
       </div>
+    </div>
 
-      <div class="welcome-gallery" aria-label="Galerie photos">
-        <!-- Keep images in /images/carousel/ -->
-        <img src="/images/carousel/img_30.jpg" alt="Photo 1" loading="lazy">
-        <img src="/images/carousel/img_13.jpg" alt="Photo 2" loading="lazy">
-        <img src="/images/carousel/img_14.jpg" alt="Photo 3" loading="lazy">
-        <img src="/images/carousel/img_18.jpg" alt="Photo 4" loading="lazy">
-        <img src="/images/carousel/img_19.jpg" alt="Photo 5" loading="lazy">
-        <img src="/images/carousel/img_20.jpg" alt="Photo 6" loading="lazy">
-        <img src="/images/carousel/img_21.jpg" alt="Photo 7" loading="lazy">
-      </div>
+    <!-- Gallery underneath the text (moved OUTSIDE the grid) -->
+    <div class="welcome-gallery" aria-label="Galerie photos">
+      <!-- Keep images in /images/carousel/ -->
+      <img src="/images/carousel/img_30.jpg" alt="Photo 1" loading="lazy">
+      <img src="/images/carousel/img_13.jpg" alt="Photo 2" loading="lazy">
+      <img src="/images/carousel/img_14.jpg" alt="Photo 3" loading="lazy">
+      <img src="/images/carousel/img_18.jpg" alt="Photo 4" loading="lazy">
+      <img src="/images/carousel/img_19.jpg" alt="Photo 5" loading="lazy">
+      <img src="/images/carousel/img_20.jpg" alt="Photo 6" loading="lazy">
+      <img src="/images/carousel/img_21.jpg" alt="Photo 7" loading="lazy">
     </div>
   </section>
 
@@ -203,8 +208,8 @@
   <!-- Lightbox script (auto-detects thumbnails; no hard-coded count) -->
   <script>
   (function(){
-    // Support either .welcome-gallery or .photo-row, just in case
-    const gallery = document.querySelector(".welcome-gallery, .photo-row");
+    // Target the gallery under Welcome
+    const gallery = document.querySelector(".welcome-gallery");
     if (!gallery) return;
 
     const thumbs  = Array.from(gallery.querySelectorAll("a.thumb, img"));
