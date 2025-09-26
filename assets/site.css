@@ -31,6 +31,14 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvet
   padding-right: 20px;
 }
 
+.welcome-gallery {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: flex-start; margin-top: 20px;
+}
+.welcome-gallery img {
+  width: 150px; height: 100px; object-fit: cover; border-radius: 8px; display: block;
+}
+
 /* Optional: keep header tidy */
 .topbar {
   border-bottom: 1px solid #eee;
