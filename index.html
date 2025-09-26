@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison des Familles – Saint François d'Assise</title>
+  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
+  <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+  <!-- ===== Header with logo from maison/images/logos/ ===== -->
+  <header class="topbar" role="banner">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="#welcome" aria-label="Accueil">
+        <img src="maison/images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
+      </a>
+      <div class="navlinks">
+        <a href="#welcome">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#team">Notre Équipe</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== Welcome (left text, right carousel) ===== -->
+  <section id="welcome" class="welcome" aria-label="Bienvenue">
+    <div class="welcome-grid">
+      <div>
+        <h1>Bienvenue à la Maison des Familles</h1>
+        <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
+      </div>
+
+      <figure class="carousel" aria-roledescription="carrousel" aria-label="Galerie photos">
+        <div class="carousel-track" id="track"></div>
+        <button class="car-btn car-prev" aria-label="Photo précédente" id="prev">‹</button>
+        <button class="car-btn car-next" aria-label="Photo suivante" id="next">›</button>
+        <div class="dots" role="tablist" aria-label="Sélection de photo" id="dots"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== Services (Claude styles) ===== -->
+  <section id="services" aria-label="Services">
+    <div class="wrap">
+      <h2 class="title">Nos Services</h2>
+      <p class="sub">Accompagnement familial, soutien à la parentalité, médiation, ateliers éducatifs et orientation.</p>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <h3>Accompagnement Familial</h3>
+          <p>Soutien et guidance pour les familles en difficulté, médiation familiale et conseil conjugal dans un esprit d'écoute et de bienveillance.</p>
+        </article>
+        <article class="service-card">
+          <h3>Soutien à la Parentalité</h3>
+          <p>Ateliers et accompagnement individuel pour les parents, groupes de parole et formations pour développer les compétences parentales.</p>
+        </article>
+        <article class="service-card">
+          <h3>Activités Éducatives</h3>
+          <p>Ateliers créatifs, activités périscolaires et temps de loisirs pour les enfants et adolescents dans un cadre sécurisé et épanouissant.</p>
+        </article>
+        <article class="service-card">
+          <h3>Médiation & Conseil</h3>
+          <p>Services de médiation familiale, conseil conjugal et accompagnement psychologique pour surmonter les difficultés relationnelles.</p>
+        </article>
+        <article class="service-card">
+          <h3>Formation & Prévention</h3>
+          <p>Sessions de formation sur la parentalité, prévention des violences familiales et sensibilisation aux droits de l'enfant.</p>
+        </article>
+        <article class="service-card">
+          <h3>Accueil & Orientation</h3>
+          <p>Premier accueil des familles, évaluation des besoins et orientation vers les services adaptés du territoire marseillais.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Team ===== -->
+  <section id="team" class="team" aria-label="Notre équipe">
+    <div class="wrap">
+      <h2 class="title">Notre Équipe</h2>
+      <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
+      <div class="team-grid">
+        <article class="member">
+          <img class="avatar" src="images/team/pro1.jpg" alt="Photo membre 1" />
+          <div class="name">Nom 1</div>
+          <div class="role">Fonction</div>
+          <p class="bio">Courte bio (3–4 lignes) présentant l’expérience et le rôle auprès des familles.</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="images/team/pro2.jpg" alt="Photo membre 2" />
+          <div class="name">Nom 2</div>
+          <div class="role">Fonction</div>
+          <p class="bio">Courte bio (spécialités, diplômes, cœur de mission).</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="images/team/pro3.jpg" alt="Photo membre 3" />
+          <div class="name">Nom 3</div>
+          <div class="role">Fonction</div>
+          <p class="bio">Courte bio (approches, années d’expérience, publics).</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="images/team/pro4.jpg" alt="Photo membre 4" />
+          <div class="name">Nom 4</div>
+          <div class="role">Fonction</div>
+          <p class="bio">Courte bio (missions, formations, inspirations).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" aria-label="Contact">
+    <div class="wrap">
+      <h2 class="title">Nous Contacter</h2>
+      <p class="sub">Réponse sous 24 h ouvrées.</p>
+      <div class="contact-grid">
+        <form class="card" action="#" method="POST">
+          <label>Nom<br><input name="nom" required></label>
+          <label>Email<br><input name="email" type="email" required></label>
+          <label>Message<br><textarea name="message" rows="5" required></textarea></label>
+          <button class="btn" type="submit">Envoyer</button>
+        </form>
+        <div class="card info-card">
+          <h3>Infos</h3>
+          <p><strong>Adresse</strong><br>116 BOULEVARD VAUBAN, 13006 MARSEILLE</p>
+          <p><strong>Email</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
+          <p><strong>Téléphone</strong><br>04 91 XX XX XX (Lun–Ven : 9h–17h)</p>
+          <div class="note"><strong>Urgences :</strong> 3919 (Violences Femmes Info) · 119 (Allô Enfance en Danger)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer with logo from maison/images/logos/ ===== -->
+  <footer role="contentinfo">
+    <div class="foot">
+      <img src="maison/images/logos/BLOGO.png" alt="Logo Maison des Familles" />
+      <small>© 2025 · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/carousel.js" defer></script>
+</body>
+</html>
