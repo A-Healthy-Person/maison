@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison des Familles – Saint François d'Assise</title>
+  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
+  <link rel="preload" href="images/carousel/img_1.jpg" as="image" />
+  <style>
+    :root{
+      --blue:#0C5CC5;
+      --blue-900:#083b86;
+      --blue-050:#f2f7ff;
+      --coral:#FF5754;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --radius:20px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.6;background:#fff}
+    .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e5e7eb}
+    .nav{max-width:1160px;margin:auto;display:flex;gap:24px;align-items:center;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--blue-900)}
+    .brand img{height:auto;width:clamp(160px, 18vw, 240px)}
+    .logo-img{height:auto;width:clamp(180px, 20vw, 260px);filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));}
+    .brand span{font-weight:700;letter-spacing:.2px}
+    .spacer{flex:1}
+    .nav a{color:var(--blue-900);text-decoration:none;font-weight:600;opacity:.9}
+    .nav a:hover{opacity:1}
+    .nav .cta{background:var(--blue);color:#fff;padding:10px 14px;border-radius:999px}
+    .hero{background:linear-gradient(0deg, rgba(12,92,197,.08), rgba(12,92,197,.08)), #fff}
+    .hero-inner{max-width:1160px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:60px 20px}
+    .hero h1{font-size:clamp(28px,3.4vw,46px);line-height:1.15;margin:0;color:var(--blue-900)}
+    .hero p{margin:14px 0 26px;color:#374151;max-width:60ch}
+    .btn{display:inline-block;background:var(--blue);color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:var(--shadow)}
+    .btn.alt{background:var(--coral)}
+    .hero-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .hero-card img{display:block;width:100%;height:auto}
+    section{padding:56px 20px}
+    .wrap{max-width:1160px;margin:auto}
+    .section-title{font-size:clamp(24px,2.6vw,36px);text-align:center;color:var(--blue-900);margin:0 0 10px}
+    .section-sub{color:var(--muted);text-align:center;margin:0 0 34px}
+    .grid{display:grid;gap:20px}
+    .grid.services{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+    .card h3{margin:6px 0 6px;color:var(--blue-900)}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:var(--blue-050);color:var(--blue-900);padding:6px 10px;border-radius:999px;font-weight:700}
+    .carousel{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .carousel-track{display:flex;transition:transform .5s ease}
+    .carousel img{width:100%;height:380px;object-fit:cover;display:block}
+    .car-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer}
+    .car-btn:focus{outline:3px solid #fff}
+    .car-prev{left:10px}.car-next{right:10px}
+    .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
+    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.2)}
+    .dot.active{background:#fff}
+    .grid.team{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .member{display:flex;flex-direction:column;gap:10px}
+    .avatar{aspect-ratio:1/1;width:100%;border-radius:14px;object-fit:cover;background:linear-gradient(135deg,var(--blue),#7aa5ff)}
+    .name{font-weight:800;color:var(--blue-900)}
+    .role{color:var(--blue);font-weight:700}
+    .bio{color:#4b5563}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .contact .info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .info .box{background:#fff;border:1px solid #eef2f7;border-radius:14px;padding:18px}
+    .info .box h4{margin:0;color:var(--blue-900)}
+    .alert{margin-top:14px;border-left:6px solid var(--blue);padding:14px;border-radius:8px;background:#f8fafc}
+    footer{background:var(--blue-900);color:#e5e7eb}
+    footer .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+    footer small{opacity:.9}
+    @media (max-width: 1000px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid.services{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid.team{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .contact{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .grid.services{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#accueil">
+        <img src="images/logos/WLOGO.png" alt="Logo Maison des Familles" class="logo-img" />
+        <span>Maison des Familles<br><small>Saint François d'Assise</small></span>
+      </a>
+      <div class="spacer"></div>
+      <a href="#accueil">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
+  </header>
+
+  <section id="accueil" class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="pill">Bienvenue</span>
+        <h1>Un lieu d'accueil, d'écoute et d'accompagnement pour les familles marseillaises.</h1>
+        <p>Inspirée par Saint François d'Assise, la Maison des Familles offre un soutien discret et bienveillant.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="#contact">Nous contacter</a>
+          <a class="btn alt" href="#services">Découvrir nos services</a>
+        </div>
+      </div>
+      <figure class="carousel">
+        <div class="carousel-track" id="track">
+          <img src="images/carousel/img_1.jpg" alt="Image 1" />
+          <img src="images/carousel/img_2.jpg" alt="Image 2" />
+          <img src="images/carousel/img_3.jpg" alt="Image 3" />
+          <img src="images/carousel/img_4.jpg" alt="Image 4" />
+          <img src="images/carousel/img_5.jpg" alt="Image 5" />
+          <img src="images/carousel/img_6.jpg" alt="Image 6" />
+          <img src="images/carousel/img_7.jpg" alt="Image 7" />
+          <img src="images/carousel/img_8.jpg" alt="Image 8" />
+          <img src="images/carousel/img_9.jpg" alt="Image 9" />
+          <img src="images/carousel/img_10.jpg" alt="Image 10" />
+        </div>
+        <button class="car-btn car-prev" id="prev">‹</button>
+        <button class="car-btn car-next" id="next">›</button>
+        <div class="dots" id="dots"></div>
+      </figure>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2 class="section-title">Nos services</h2>
+      <p class="section-sub">Accompagnement familial, soutien à la parentalité, médiation, ateliers éducatifs et orientation.</p>
+      <div class="grid services">
+        <article class="card"><h3>Accompagnement familial</h3><p>Entretiens individuels et en famille.</p></article>
+        <article class="card"><h3>Soutien à la parentalité</h3><p>Groupes de parole, ateliers thématiques.</p></article>
+        <article class="card"><h3>Médiation & conseil conjugal</h3><p>Espaces de dialogue apaisé.</p></article>
+        <article class="card"><h3>Ateliers éducatifs</h3><p>Activités créatives et pédagogiques.</p></article>
+        <article class="card"><h3>Prévention & formation</h3><p>Sensibilisation aux droits de l'enfant.</p></article>
+        <article class="card"><h3>Accueil & orientation</h3><p>Évaluation des besoins et orientation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipe" style="background:var(--blue-050)">
+    <div class="wrap">
+      <h2 class="section-title">Notre équipe</h2>
+      <p class="section-sub">Une équipe pluridisciplinaire au service des familles.</p>
+      <div class="grid team">
+        <article class="card member">
+          <img class="avatar" src="images/team/pro1.jpg" alt="Photo membre équipe" />
+          <div class="name">Nom 1</div>
+          <div class="role">Rôle</div>
+          <p class="bio">Courte bio du membre.</p>
+        </article>
+        <article class="card member">
+          <img class="avatar" src="images/team/pro2.jpg" alt="Photo membre équipe" />
+          <div class="name">Nom 2</div>
+          <div class="role">Rôle</div>
+          <p class="bio">Courte bio du membre.</p>
+        </article>
+        <article class="card member">
+          <img class="avatar" src="images/team/pro3.jpg" alt="Photo membre équipe" />
+          <div class="name">Nom 3</div>
+          <div class="role">Rôle</div>
+          <p class="bio">Courte bio du membre.</p>
+        </article>
+        <article class="card member">
+          <img class="avatar" src="images/team/pro4.jpg" alt="Photo membre équipe" />
+          <div class="name">Nom 4</div>
+          <div class="role">Rôle</div>
+          <p class="bio">Courte bio du membre.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2 class="section-title">Nous contacter</h2>
+        <form class="card" action="https://formspree.io/f/your-id" method="POST">
+          <label>Nom<br><input name="nom" required style="width:100%"/></label>
+          <label>Email<br><input name="email" type="email" required style="width:100%"/></label>
+          <label>Message<br><textarea name="message" rows="5" required style="width:100%"></textarea></label>
+          <button class="btn" type="submit">Envoyer</button>
+        </form>
+        <div class="alert"><strong>Urgences :</strong> 3919 (Violences Femmes Info) · 119 (Allô Enfance en Danger)</div>
+      </div>
+      <div class="info">
+        <div class="box"><h4>Adresse</h4><p>123 Avenue Saint François d'Assise<br>13001 Marseille</p></div>
+        <div class="box"><h4>Téléphone</h4><p>04 91 XX XX XX</p></div>
+        <div class="box"><h4>Email</h4><p>contact@maisonfamilles-stfrancois.fr</p></div>
+        <div class="box"><h4>Horaires</h4><p>Lundi–Vendredi : 9h–17h</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <section class="wrap" style="padding:22px 20px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="images/logos/WLOGO.png" alt="Logo Maison des Familles" style="height:36px;width:auto" />
+        <strong>Maison des Familles – Saint François d'Assise</strong>
+      </div>
+      <small>© 2025 · Accueil, écoute et accompagnement bienveillant</small>
+    </section>
+  </footer>
+
+  <script>
+    const track = document.getElementById('track');
+    const imgs = Array.from(track.querySelectorAll('img'));
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const dotsWrap = document.getElementById('dots');
+    let i = 0;
+    function go(n){
+      i = (n+imgs.length)%imgs.length;
+      track.style.transform = `translateX(${-i*100}%)`;
+      dotsWrap.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
+    }
+    function resize(){track.style.width = `${imgs.length*100}%`;imgs.forEach(im=>im.style.width = `${100/imgs.length}%`)}
+    resize();
+    imgs.forEach((_,idx)=>{const b=document.createElement('button');b.className='dot'+(idx===0?' active':'');b.type='button';b.addEventListener('click',()=>go(idx));dotsWrap.appendChild(b)});
+    prev.addEventListener('click',()=>go(i-1));next.addEventListener('click',()=>go(i+1));
+    let timer=setInterval(()=>go(i+1),5000);
+    [prev,next,track].forEach(el=>{el.addEventListener('mouseenter',()=>clearInterval(timer));el.addEventListener('mouseleave',()=>timer=setInterval(()=>go(i+1),5000))});
+    window.addEventListener('resize', resize);
+  </script>
+</body>
+</html>
