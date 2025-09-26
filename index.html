@@ -6,93 +6,75 @@
   <title>Maison des Familles – Saint François d'Assise</title>
   <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
   <link rel="stylesheet" href="/assets/site.css?v=6" />
-
-  <!-- Gallery + Lightbox minimal styles (kept small to avoid conflicts) -->
-  <style>
-    /* Thumbnails in the welcome gallery */
-    .welcome-gallery {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      align-items: start;
-      padding-top: 14px;
-    }
-    /* Make thumbnails consistent size */
-    .welcome-gallery img{
-      width:100%;
-      height:160px;       /* adjust 140–220px as you like */
-      object-fit:cover;
-      border-radius:8px;
-      box-shadow:0 2px 6px rgba(0,0,0,.15);
-      display:block;
-      transition: transform .25s ease;
-      cursor: zoom-in;
-    }
-    .welcome-gallery img:hover { transform: scale(1.02); }
-
-    /* Lightbox */
-    .lightbox {
-      position:fixed; inset:0; display:none; place-items:center;
-      background:rgba(0,0,0,.9); z-index:9999;
-    }
-    .lightbox.open { display:grid; }
-    .lightbox__stage { position:relative; max-width:min(96vw,1400px); max-height:90vh; }
-    .lightbox__img { max-width:96vw; max-height:90vh; width:auto; height:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.5); }
-    .lightbox__caption { text-align:center; color:#ddd; margin-top:10px; font-size:14px; }
-
-    .lightbox__close, .lightbox__nav {
-      position:absolute; background:rgba(255,255,255,.15); color:#fff; border:none;
-      border-radius:999px; width:42px; height:42px; display:grid; place-items:center; cursor:pointer;
-    }
-    .lightbox__close { top:18px; right:18px; }
-    .lightbox__prev { top:50%; left:18px; transform:translateY(-50%); font-size:20px; }
-    .lightbox__next { top:50%; right:18px; transform:translateY(-50%); font-size:20px; }
-
-    @media (max-width:700px){
-      .lightbox__prev { left:10px; }
-      .lightbox__next { right:10px; }
-    }
-  </style>
 </head>
 <body>
 
   <!-- Header -->
   <header class="topbar" role="banner">
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="#welcome" aria-label="Accueil">
-        <img src="/images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
-      </a>
-      <div class="navlinks">
-        <a href="#welcome">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="#team">Notre Équipe</a>
-        <a href="#contact">Contact</a>
-      </div>
+    <nav class="nav wrap" aria-label="Navigation principale">
+      <a class="brand" href="#welcome" aria-label="Accueil">Maison des Familles</a>
+      <!-- Ajoutez vos liens de nav ici si besoin -->
     </nav>
   </header>
 
-  <!-- Welcome (text first) -->
-  <section id="welcome" class="welcome" aria-label="Bienvenue">
-    <div class="welcome-grid">
-      <div>
-        <h1>Bienvenue à la Maison des Familles</h1>
-        <p>Un lieu d’accueil, d’écoute et d’accompagnement pour les familles de Marseille, dans l’esprit de Saint François d’Assise.</p>
-        <p style="color:#555;margin-top:.5rem;">Cliquez sur une photo pour l’agrandir.</p>
-      </div>
-    </div>
+  <!-- Main -->
+  <main id="main-content">
+    <!-- Welcome Section -->
+    <section id="welcome" class="welcome-section">
+      <div class="wrap">
+        <h1>Welcome / Bienvenue</h1>
+        <p class="subheading">Nous sommes heureux de vous accueillir.</p>
 
-    <!-- Gallery underneath the text (moved OUTSIDE the grid) -->
-    <div class="welcome-gallery" aria-label="Galerie photos">
-      <!-- Keep images in /images/carousel/ -->
-      <img src="/images/carousel/img_30.jpg" alt="Photo 1" loading="lazy">
-      <img src="/images/carousel/img_13.jpg" alt="Photo 2" loading="lazy">
-      <img src="/images/carousel/img_14.jpg" alt="Photo 3" loading="lazy">
-      <img src="/images/carousel/img_18.jpg" alt="Photo 4" loading="lazy">
-      <img src="/images/carousel/img_19.jpg" alt="Photo 5" loading="lazy">
-      <img src="/images/carousel/img_20.jpg" alt="Photo 6" loading="lazy">
-      <img src="/images/carousel/img_21.jpg" alt="Photo 7" loading="lazy">
+        <!-- Photo row under the heading -->
+        <div class="photo-row" aria-label="Galerie de 6 photos">
+          <!-- Replace the filenames below with your actual images in /assets/ -->
+          <img src="assets/img_1.jpg" alt="Photo 1">
+          <img src="assets/img_2.jpg" alt="Photo 2">
+          <img src="assets/img_3.jpg" alt="Photo 3">
+          <img src="assets/img_4.jpg" alt="Photo 4">
+          <img src="assets/img_5.jpg" alt="Photo 5">
+          <img src="assets/img_6.jpg" alt="Photo 6">
+        </div>
+      </div>
+    </section>
+
+    <!-- Other sections (if you have them) -->
+    <section id="services">
+      <div class="wrap">
+        <h2>Services</h2>
+        <p>…</p>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="wrap">
+        <h2>Équipe</h2>
+        <p>…</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p>…</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year"></span> Maison des Familles – Saint François d'Assise</p>
     </div>
-  </section>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
 
   <!-- Services -->
   <section id="services" aria-label="Services">
