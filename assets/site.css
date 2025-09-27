@@ -195,27 +195,37 @@ section{ padding:60px 20px }
 
 /* ===== Footer ===== */
 footer{
-  background:var(--blue-900); color:#fff; padding:32px 20px; text-align:center;
+  background:#f9fafb;
+  border-top:1px solid #e5e7eb;
+  padding:24px 20px;
+  text-align:center;
+  font-size:0.95rem;
+  color:var(--muted);
 }
-.foot{
-  max-width:1160px; margin:auto; display:flex; align-items:center;
-  justify-content:center; gap:20px; flex-wrap:wrap;
-}
-.foot img{ height:91px; opacity:0.9 }
-.foot small{ opacity:0.8 }
 
-/* Target the link inside the small element */
-footer small a,
-footer .foot small a {
-  color: #ffffff !important;
-  text-decoration: underline !important;
-  opacity: 0.8 !important;
+footer .foot img{
+  max-height:60px;
+  margin-bottom:12px;
 }
-footer small a:hover,
-footer .foot small a:hover {
-  opacity: 1 !important;
-  color: #ffffff !important;
+
+/* Link styling */
+footer .foot a {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;                  /* white text */
+  background: var(--blue-900);  /* dark blue background */
+  border-radius: 6px;
+  text-decoration: none;
 }
+footer .foot a:hover,
+footer .foot a:focus {
+  background: var(--coral);     /* bright red hover */
+  color: #fff;
+}
+
 
 /* ===== Lightbox ===== */
 .lightbox{
