@@ -1,6 +1,3 @@
-Here's the full CSS with the footer link styling fixed:
-
-```css
 :root{
   --blue:#005BBB;
   --blue-900:#003F88;
@@ -73,26 +70,18 @@ footer .foot img{
   margin-bottom:12px;
 }
 footer .foot a{
-  color: var(--muted);  /* Same gray as other footer text */
-  background: none;     /* Remove the blue background */
-  padding: 0;           /* Remove button padding */
-  border-radius: 0;     /* Remove button styling */
-  font-weight: 400;     /* Normal weight like other text */
-  text-decoration: underline; /* Show it's a link */
+  color: var(--muted) !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 400 !important;
+  text-decoration: underline !important;
   margin-left: 8px;
-  display: inline;      /* Make it inline like normal text */
+  display: inline !important;
 }
 footer .foot a:hover,
 footer .foot a:focus{
-  color: var(--blue-900); /* Darker on hover for good contrast */
-  background: none;       /* Keep background transparent */
+  color: var(--blue-900) !important;
+  background: transparent !important;
+  text-decoration: underline !important;
 }
-```
-
-The key changes to the footer links:
-- **Color**: Now uses `var(--muted)` (same gray as other footer text)
-- **Background**: Removed the blue background 
-- **Styling**: Removed button-like appearance, made it look like normal text with underline
-- **Hover**: Changes to dark blue for good contrast and user feedback
-
-This gives you much better accessibility and the links blend naturally with the footer text while still being clearly clickable.
