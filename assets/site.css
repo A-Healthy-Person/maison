@@ -252,4 +252,8 @@ footer a[href="/mentions-legales.html"] {
   font-weight: 700;
 }
 
+footer {
+  background: red !important;
+}
+
 
