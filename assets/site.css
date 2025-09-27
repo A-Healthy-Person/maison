@@ -262,3 +262,18 @@ footer .foot a:focus {
   .navlinks{ margin-top:16px; justify-content:center; flex-wrap:wrap }
   section{ padding:40px 20px }
 }
+
+footer .foot a {
+  background: var(--blue-900);
+  color: #fff !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none !important;
+  display: inline-block;
+  margin-top: 8px;
+}
+footer .foot a:hover {
+  background: var(--coral);
+}
+
