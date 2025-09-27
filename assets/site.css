@@ -1,3 +1,6 @@
+Here's the full CSS with the footer link styling fixed:
+
+```css
 :root{
   --blue:#005BBB;
   --blue-900:#003F88;
@@ -9,7 +12,6 @@
   --radius:18px;
   --shadow:0 10px 30px rgba(0,0,0,.08);
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -19,7 +21,6 @@ body{
   background:var(--bg);
   line-height:1.6;
 }
-
 /* ===== Header / Nav ===== */
 .topbar{
   position:sticky; top:0; z-index:1000;
@@ -50,7 +51,6 @@ body{
   line-height:1.1; white-space:nowrap;
 }
 .navlinks a:hover{ background:var(--soft) }
-
 /* ===== Generic layout ===== */
 section{ padding:56px 20px }
 .wrap{ max-width:1160px; margin:auto }
@@ -59,7 +59,6 @@ section{ padding:56px 20px }
   margin:0 0 10px; text-align:center
 }
 .sub{ color:var(--muted); }
-
 /* ===== Footer ===== */
 footer{
   background:#f9fafb;
@@ -74,16 +73,26 @@ footer .foot img{
   margin-bottom:12px;
 }
 footer .foot a{
-  color:#fff;
-  background:var(--blue-900);
-  padding:6px 12px;
-  border-radius:6px;
-  font-weight:600;
-  text-decoration:none;
-  margin-left:8px;
-  display:inline-block;
+  color: var(--muted);  /* Same gray as other footer text */
+  background: none;     /* Remove the blue background */
+  padding: 0;           /* Remove button padding */
+  border-radius: 0;     /* Remove button styling */
+  font-weight: 400;     /* Normal weight like other text */
+  text-decoration: underline; /* Show it's a link */
+  margin-left: 8px;
+  display: inline;      /* Make it inline like normal text */
 }
 footer .foot a:hover,
 footer .foot a:focus{
-  background:var(--coral);
+  color: var(--blue-900); /* Darker on hover for good contrast */
+  background: none;       /* Keep background transparent */
 }
+```
+
+The key changes to the footer links:
+- **Color**: Now uses `var(--muted)` (same gray as other footer text)
+- **Background**: Removed the blue background 
+- **Styling**: Removed button-like appearance, made it look like normal text with underline
+- **Hover**: Changes to dark blue for good contrast and user feedback
+
+This gives you much better accessibility and the links blend naturally with the footer text while still being clearly clickable.
