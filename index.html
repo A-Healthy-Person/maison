@@ -178,63 +178,27 @@
     .bio{ color:var(--muted); line-height:1.6; margin:0 }
 
     /* ===== Contact ===== */
-    .contact-grid{
-      display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:40px;
+    .contact-content{
+      max-width:600px; margin:0 auto; text-align:center;
     }
-    .card{
-      background:#fff; padding:32px; border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .contact-message{
+      background:#fff; padding:40px; border-radius:var(--radius);
+      box-shadow:var(--shadow); margin:40px auto;
     }
-    .card h3{
-      color:var(--blue-900); margin:0 0 24px; font-size:1.4rem;
+    .contact-message h3{
+      color:var(--blue-900); margin:0 0 24px; font-size:1.6rem;
     }
-    
-    /* Form Styling */
-    .contact-form{
-      display:flex; flex-direction:column; gap:20px;
+    .contact-message p{
+      margin:0 0 20px; line-height:1.6; font-size:1.1rem;
     }
-    .form-group{
-      display:flex; flex-direction:column;
+    .contact-message strong{ color:var(--blue-900) }
+    .contact-message a{ 
+      color:var(--blue); text-decoration:none; font-weight:600;
     }
-    .form-group label{
-      color:var(--blue-900); font-weight:600; margin-bottom:8px;
-    }
-    .form-group input, .form-group textarea{
-      padding:12px 16px; border:2px solid #e5e7eb; border-radius:8px;
-      font-size:1rem; transition:border-color 0.3s ease;
-      font-family:inherit;
-    }
-    .form-group input:focus, .form-group textarea:focus{
-      outline:none; border-color:var(--blue);
-    }
-    .btn{
-      background:var(--blue); color:#fff; border:none; padding:16px 32px;
-      border-radius:8px; font-size:1.1rem; font-weight:600; cursor:pointer;
-      transition:background-color 0.3s ease; align-self:flex-start;
-    }
-    .btn:hover{ background:var(--blue-900) }
-    .btn:disabled{ background:var(--muted); cursor:not-allowed }
-
-    /* Info card */
-    .info-card p{ margin:0 0 20px; line-height:1.6 }
-    .info-card strong{ color:var(--blue-900) }
-    .info-card a{ color:var(--blue); text-decoration:none }
-    .info-card a:hover{ text-decoration:underline }
+    .contact-message a:hover{ text-decoration:underline }
     .note{
       background:var(--soft); padding:16px; border-radius:8px; margin-top:20px;
       border-left:4px solid var(--coral);
-    }
-
-    /* Form feedback */
-    .form-feedback{
-      padding: 16px; border-radius: 8px; margin-top: 20px; text-align: center;
-      font-weight: 600; display: none;
-    }
-    .form-feedback.success{
-      background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0;
-    }
-    .form-feedback.error{
-      background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5;
     }
 
     /* ===== Footer ===== */
@@ -281,7 +245,6 @@
     @media (max-width: 768px) {
       .nav{ flex-direction:column; padding:16px 20px; min-height:auto }
       .navlinks{ margin-top:16px; justify-content:center; flex-wrap:wrap }
-      .contact-grid{ grid-template-columns:1fr }
       section{ padding:40px 20px }
     }
   </style>
@@ -371,7 +334,7 @@
         <div class="name">Elisabeth Charbonnier</div>
         <div class="role">Orthophoniste</div>
         <p class="bio">
-          Orthophoniste depuis 17 ans, j’accompagne des enfants comme des adultes 
+          Orthophoniste depuis 17 ans, j'accompagne des enfants comme des adultes 
           après un AVC. La parole est source de vie et je suis animée par ce processus.
         </p>
       </article>
@@ -382,7 +345,7 @@
         <div class="name">Lucille Dauphin</div>
         <div class="role">Psychologue clinicienne</div>
         <p class="bio">
-          Spécialisée dans les psychopathologies de l’enfant et de l’adolescent, 
+          Spécialisée dans les psychopathologies de l'enfant et de l'adolescent, 
           je propose un accompagnement individuel et des ateliers thérapeutiques.
         </p>
       </article>
@@ -393,8 +356,8 @@
         <div class="name">Magali Quercioli</div>
         <div class="role">Enseignante PNL &amp; Coaching</div>
         <p class="bio">
-          Depuis 15 ans, j’accompagne des personnes et couples en quête de clarté, 
-          d’évolution et de mieux-être avec des outils de thérapies brèves.
+          Depuis 15 ans, j'accompagne des personnes et couples en quête de clarté, 
+          d'évolution et de mieux-être avec des outils de thérapies brèves.
         </p>
       </article>
 
@@ -404,7 +367,7 @@
         <div class="name">Christine Solignac</div>
         <div class="role">Conseillère conjugale &amp; familiale</div>
         <p class="bio">
-          J’accompagne personnes, couples et familles à prendre soin de leurs 
+          J'accompagne personnes, couples et familles à prendre soin de leurs 
           relations affectives et relationnelles, dans une approche systémique.
         </p>
       </article>
@@ -413,38 +376,23 @@
   </div>
 </section>
 
-
   <!-- Contact -->
   <section id="contact" aria-label="Contact">
     <div class="wrap">
       <h2 class="title">Nous Contacter</h2>
-      <p class="sub">Réponse sous 24 h ouvrées.</p>
-      <div class="contact-grid">
-        <div class="card">
-          <h3>Envoyez-nous un message</h3>
-          <form class="contact-form" id="contactForm">
-            <div class="form-group">
-              <label for="nom">Nom *</label>
-              <input type="text" id="nom" name="nom" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn" id="submitBtn">Envoyer</button>
-          </form>
-          <div class="form-feedback" id="formFeedback"></div>
-        </div>
-        
-        <div class="card info-card">
-          <h3>Informations de Contact</h3>
-          <p><strong>Adresse</strong><br>116 BOULEVARD VAUBAN<br>13006 MARSEILLE</p>
-          <p><strong>Email</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
-          <p><strong>Téléphone</strong><br>04 91 XX XX XX<br><small>Lundi–Vendredi : 9h–17h</small></p>
+      <p class="sub">Nous sommes à votre disposition pour vous accompagner.</p>
+      
+      <div class="contact-content">
+        <div class="contact-message">
+          <h3>Contactez-nous</h3>
+          <p>Pour toute question ou demande d'accompagnement, n'hésitez pas à nous contacter :</p>
+          
+          <p><strong>Email :</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
+          
+          <p><strong>Téléphone :</strong><br><a href="tel:0491000000">04 91 XX XX XX</a><br><small>Lundi–Vendredi : 9h–17h</small></p>
+          
+          <p><strong>Adresse :</strong><br>116 BOULEVARD VAUBAN<br>13006 MARSEILLE</p>
+          
           <div class="note">
             <strong>Numéros d'urgence :</strong><br>
             • 3919 (Violences Femmes Info)<br>
@@ -477,43 +425,6 @@
   <script>
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Contact Form Handler
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const feedback = document.getElementById('formFeedback');
-      const formData = new FormData(this);
-      
-      // Show loading state
-      submitBtn.textContent = 'Envoi en cours...';
-      submitBtn.disabled = true;
-      feedback.style.display = 'none';
-      
-      try {
-        // Simulate form submission (replace with your actual endpoint)
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Show success message
-        feedback.className = 'form-feedback success';
-        feedback.textContent = 'Votre message a été envoyé avec succès. Nous vous répondrons dans les 24h.';
-        feedback.style.display = 'block';
-        
-        // Reset form
-        this.reset();
-        
-      } catch (error) {
-        // Show error message
-        feedback.className = 'form-feedback error';
-        feedback.textContent = 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.';
-        feedback.style.display = 'block';
-      } finally {
-        // Reset button
-        submitBtn.textContent = 'Envoyer';
-        submitBtn.disabled = false;
-      }
-    });
 
     // Lightbox functionality
     (function(){
