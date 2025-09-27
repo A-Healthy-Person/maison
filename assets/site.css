@@ -74,20 +74,16 @@ footer .foot img{
   margin-bottom:12px;
 }
 footer .foot a{
-  color:var(--blue-900);          /* strong contrast */
+  color:#fff;
+  background:var(--blue-900);
+  padding:6px 12px;
+  border-radius:6px;
   font-weight:600;
-  text-decoration:underline;
-  margin-left:6px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
-footer .foot a::before{
-  content:"ℹ️";                  /* info icon before the link */
-  font-size:0.9rem;
+  text-decoration:none;
+  margin-left:8px;
+  display:inline-block;
 }
 footer .foot a:hover,
 footer .foot a:focus{
-  color:var(--coral);             /* coral on hover */
-  text-decoration:none;
+  background:var(--coral);
 }
