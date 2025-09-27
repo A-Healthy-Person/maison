@@ -246,11 +246,10 @@ footer .foot img {
   margin-bottom:12px;
 }
 
-/* Footer link */
-footer .foot a {
-  color:#fff !important;           /* always white */
-  font-weight:600;                 /* slightly bolder */
-  text-decoration:underline;       /* classic link look */
+footer a[href="/mentions-legales.html"] {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  font-weight: 700;
 }
 
 
