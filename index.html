@@ -1,0 +1,381 @@
+Got it ✅
+Here’s your **full clean updated HTML file** with the changes fully applied:
+
+* **Fredoka** for all headers (`h1, h2, h3, .title, .name, .role, nav links, etc.`).
+* **Open Sans** for body text and paragraphs.
+* **Logo reduced by 30%** (from 234px → 164px).
+* Fonts loaded from Google Fonts.
+
+```html
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison des Familles – Saint François d'Assise</title>
+  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#005BBB;
+      --blue-900:#003F88;
+      --coral:#FF4438;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --soft:#f4f8ff;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+
+    /* ===== Headings use Fredoka ===== */
+    h1, h2, h3, .title, .name, .role, .navlinks a {
+      font-family:'Fredoka', sans-serif;
+    }
+
+    /* ===== Header / Nav ===== */
+    .topbar{
+      position:sticky; top:0; z-index:1000;
+      background:#fff; border-bottom:1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .nav{
+      max-width:1160px; margin:auto;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:12px 20px;
+      min-height:260px;
+    }
+    .brand{
+      display:flex; align-items:center; text-decoration:none;
+      flex-shrink: 0;
+    }
+    .brand img{
+      height:164px; /* reduced 30% */
+      width:auto;
+      object-fit:contain;
+      filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));
+    }
+    .navlinks{
+      display:flex; align-items:center; gap:22px;
+    }
+    .navlinks a{
+      color:var(--blue-900); text-decoration:none; font-weight:600;
+      padding:8px 16px; border-radius:10px;
+      font-size:1.65rem;
+      transition: background-color 0.2s ease;
+      white-space:nowrap;
+    }
+    .navlinks a:hover{ background:var(--soft) }
+
+    /* ===== Generic layout ===== */
+    section{ padding:60px 20px }
+    .wrap{ max-width:1160px; margin:auto }
+    .title{
+      font-size:clamp(28px,3vw,42px); color:var(--blue-900);
+      margin:0 0 16px; text-align:center; font-weight:700;
+    }
+    .sub{ 
+      color:var(--muted); text-align:center; font-size:1.1rem; 
+      margin:0 auto 40px; max-width:600px;
+    }
+
+    /* ===== Welcome Section ===== */
+    .welcome{
+      background: linear-gradient(135deg, var(--soft) 0%, #ffffff 100%);
+      padding-top: 80px;
+    }
+    .welcome-grid{
+      max-width:800px; margin:0 auto 60px; text-align:center;
+    }
+    .welcome-grid h1{
+      font-size:clamp(32px,4vw,52px); color:var(--coral);
+      margin:0 0 24px; font-weight:700; line-height:1.2;
+    }
+    .welcome-grid p{
+      font-size:1.2rem; color:var(--muted); margin:0 0 16px;
+    }
+
+    /* ===== Photo Gallery ===== */
+    .welcome-gallery{
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .welcome-gallery img{
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    .welcome-gallery img:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    }
+
+    @media (max-width: 1024px) {
+      .welcome-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .welcome-gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .welcome-gallery { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Services ===== */
+    .services-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:32px; margin-top:40px;
+    }
+    .service-card{
+      background:#fff; padding:32px; border-radius:var(--radius);
+      box-shadow:var(--shadow); transition:transform 0.3s ease;
+      border-left: 6px solid var(--coral);
+      position: relative;
+    }
+    .service-card:hover{ transform:translateY(-4px) }
+    .service-card::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 6px;
+      background: var(--coral);
+      border-radius: 0 var(--radius) 0 0;
+    }
+    .service-card h3{
+      color:var(--blue-900); margin:0 0 16px; font-size:1.4rem; font-weight:600;
+    }
+    .service-card p{
+      color:var(--muted); margin:0; line-height:1.7;
+    }
+
+    /* ===== Team ===== */
+    .team{ background:var(--soft) }
+    .team-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:32px; margin-top:40px;
+    }
+    .member{
+      background:#fff; padding:32px; border-radius:var(--radius);
+      box-shadow:var(--shadow); text-align:center;
+    }
+    .avatar{
+      width:120px; height:120px; border-radius:50%; object-fit:cover;
+      margin:0 auto 20px; display:block; border:4px solid var(--soft);
+    }
+    .name{ font-size:1.3rem; font-weight:600; color:var(--blue-900); margin-bottom:8px }
+    .role{ color:var(--coral); font-weight:500; margin-bottom:16px }
+    .bio{ color:var(--muted); line-height:1.6; margin:0 }
+
+    /* ===== Contact ===== */
+    .contact-content{
+      max-width:600px; margin:0 auto; text-align:center;
+    }
+    .contact-message{
+      background:#fff; padding:40px; border-radius:var(--radius);
+      box-shadow:var(--shadow); margin:40px auto;
+    }
+    .contact-message h3{
+      color:var(--blue-900); margin:0 0 24px; font-size:1.6rem;
+    }
+    .contact-message p{
+      margin:0 0 20px; line-height:1.6; font-size:1.1rem;
+    }
+    .contact-message strong{ color:var(--blue-900) }
+    .contact-message a{ 
+      color:var(--blue); text-decoration:none; font-weight:600;
+    }
+    .contact-message a:hover{ text-decoration:underline }
+    .note{
+      background:var(--soft); padding:16px; border-radius:8px; margin-top:20px;
+      border-left:4px solid var(--coral);
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      background:var(--blue-900); color:#fff; padding:32px 20px; text-align:center;
+    }
+    .foot{
+      max-width:1160px; margin:auto; display:flex; align-items:center;
+      justify-content:center; gap:20px; flex-wrap:wrap;
+    }
+    .foot img{ height:140px; opacity:0.9 }
+    .foot small{ opacity:0.8 }
+
+    footer .foot a {
+      color: #ffffff !important;
+      text-decoration: underline !important;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="topbar" role="banner">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="#welcome" aria-label="Accueil">
+        <img src="/images/logos/BLOGO.png" alt="Maison des Familles – Logo" />
+      </a>
+      <div class="navlinks">
+        <a href="#welcome">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#team">Notre Équipe</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Welcome -->
+  <section id="welcome" class="welcome" aria-label="Bienvenue">
+    <div class="welcome-grid">
+      <h1>Bienvenue à la Maison des Familles</h1>
+      <p>Un lieu d'accueil, d'écoute et d'accompagnement pour les familles de Marseille, dans l'esprit de Saint François d'Assise.</p>
+      <p style="color:#888;margin-top:.5rem;">Cliquez sur une photo pour l'agrandir.</p>
+    </div>
+
+    <div class="welcome-gallery" aria-label="Galerie photos">
+      <img src="/images/carousel/img_30.jpg" alt="Activités familiales" loading="lazy">
+      <img src="/images/carousel/img_13.jpg" alt="Espace d'accueil" loading="lazy">
+      <img src="/images/carousel/img_29.jpg" alt="Atelier enfants" loading="lazy">
+      <img src="/images/carousel/img_19.jpg" alt="Salle de réunion" loading="lazy">
+      <img src="/images/carousel/img_07.jpg" alt="Espace communautaire" loading="lazy">
+      <img src="/images/carousel/img_15.jpg" alt="Activités de groupe" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" aria-label="Services">
+    <div class="wrap">
+      <h2 class="title">Nos Services</h2>
+      <p class="sub">Accompagnement familial, soutien à la parentalité, médiation, ateliers éducatifs et orientation.</p>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <h3>Accompagnement Familial</h3>
+          <p>Soutien et guidance pour les familles en difficulté, médiation familiale et conseil conjugal dans un esprit d'écoute et de bienveillance.</p>
+        </article>
+        <article class="service-card">
+          <h3>Soutien à la Parentalité</h3>
+          <p>Ateliers et accompagnement individuel pour les parents, groupes de parole et formations pour développer les compétences parentales.</p>
+        </article>
+        <article class="service-card">
+          <h3>Activités Éducatives</h3>
+          <p>Ateliers créatifs, activités périscolaires et temps de loisirs pour les enfants et adolescents dans un cadre sécurisé et épanouissant.</p>
+        </article>
+        <article class="service-card">
+          <h3>Médiation & Conseil</h3>
+          <p>Services de médiation familiale, conseil conjugal et accompagnement psychologique pour surmonter les difficultés relationnelles.</p>
+        </article>
+        <article class="service-card">
+          <h3>Formation & Prévention</h3>
+          <p>Sessions de formation sur la parentalité, prévention des violences familiales et sensibilisation aux droits de l'enfant.</p>
+        </article>
+        <article class="service-card">
+          <h3>Accueil & Orientation</h3>
+          <p>Premier accueil des familles, évaluation des besoins et orientation vers les services adaptés du territoire marseillais.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team" aria-label="Notre équipe">
+    <div class="wrap">
+      <h2 class="title">Notre Équipe</h2>
+      <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
+
+      <div class="team-grid">
+        <article class="member">
+          <img class="avatar" src="/assets/p1.jpg" alt="Photo Elisabeth Charbonnier" />
+          <div class="name">Elisabeth Charbonnier</div>
+          <div class="role">Orthophoniste</div>
+          <p class="bio">Orthophoniste depuis 17 ans, j'accompagne des enfants comme des adultes après un AVC. La parole est source de vie et je suis animée par ce processus.</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="/assets/p2.jpg" alt="Photo Lucille Dauphin" />
+          <div class="name">Lucille Dauphin</div>
+          <div class="role">Psychologue clinicienne</div>
+          <p class="bio">Spécialisée dans les psychopathologies de l'enfant et de l'adolescent, je propose un accompagnement individuel et des ateliers thérapeutiques.</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="/assets/p3.jpg" alt="Photo Magali Quercioli" />
+          <div class="name">Magali Quercioli</div>
+          <div class="role">Enseignante PNL &amp; Coaching</div>
+          <p class="bio">Depuis 15 ans, j'accompagne des personnes et couples en quête de clarté, d'évolution et de mieux-être avec des outils de thérapies brèves.</p>
+        </article>
+        <article class="member">
+          <img class="avatar" src="/assets/p4.jpg" alt="Photo Christine Solignac" />
+          <div class="name">Christine Solignac</div>
+          <div class="role">Conseillère conjugale &amp; familiale</div>
+          <p class="bio">J'accompagne personnes, couples et familles à prendre soin de leurs relations affectives et relationnelles, dans une approche systémique.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-label="Contact">
+    <div class="wrap">
+      <h2 class="title">Nous Contacter</h2>
+      <p class="sub">Nous sommes à votre disposition pour vous accompagner.</p>
+      
+      <div class="contact-content">
+        <div class="contact-message">
+          <h3>Contactez-nous</h3>
+          <p>Pour toute question ou demande d'accompagnement, n'hésitez pas à nous contacter :</p>
+          <p><strong>Email :</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
+          <p><strong>Téléphone :</strong><br><a href="tel:0491000000">04 91 XX XX XX</a><br><small>Lundi–Vendredi : 9h–17h</small></p>
+          <p><strong>Adresse :</strong><br>116 BOULEVARD VAUBAN<br>13006 MARSEILLE</p>
+          <div class="note">
+            <strong>Numéros d'urgence :</strong><br>
+            • 3919 (Violences Femmes Info)<br>
+            • 119 (Allô Enfance en Danger)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="foot">
+      <img src="/images/logos/BLOGO.png" alt="Logo Maison des Familles" />
+      <small>
+        © <span id="year"></span> · Maison des Familles – Saint François d'Assise · Accueil, écoute et accompagnement · 
+        <a href="/mentions-legales.html">Mentions légales & Confidentialité</a>
+      </small>
+    </div>
+  </footer> 
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+```
+
+👉 This is now **ready to drop in**.
+
+Do you also want me to **shrink the footer logo by 30%** so it matches the new smaller header logo, or leave it as-is?
