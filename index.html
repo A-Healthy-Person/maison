@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison des Familles – Saint François d'Assise</title>
-  <meta name="description" content="Accueil, services, équipe et contact de la Maison des Familles Saint François d'Assise à Marseille." />
+  <meta name="description" content="Accueil, professionnels, activités et contact de la Maison des Familles Saint François d'Assise à Marseille." />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
     }
     .brand{ display:flex; align-items:center; text-decoration:none; flex-shrink:0 }
     .brand img{
-      height:164px; /* header logo reduced by 30% */
+      height:164px; /* header logo reduced by ~30% */
       width:auto; object-fit:contain;
       filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));
     }
@@ -101,21 +101,22 @@
     .service-card h3{ color:var(--blue-900); margin:0 0 10px; font-size:1.2rem; font-weight:700; text-transform:uppercase }
     .service-card p{ color:var(--muted); margin:0; line-height:1.7 }
 
-    /* Activity icon holder — assumes PNGs ALREADY include coral circle */
+    /* Activity icon holder — assumes PNGs already include coral circle */
     .activity-icon{
       position:absolute; top:18px; right:18px; width:56px; height:56px;
       display:block; border-radius:50%; overflow:hidden; box-shadow:0 6px 16px rgba(0,0,0,.12)
     }
     .activity-icon img{ width:56px; height:56px; display:block; object-fit:contain }
 
-    /* ===== Team ===== */
+    /* ===== Professionals ===== */
     .team{ background:var(--soft) }
     .team-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-top:40px }
-    .member{ background:#fff; padding:32px; border-radius:var(--radius); box-shadow:var(--shadow); text-align:center }
-    .avatar{ width:120px; height:120px; border-radius:50%; object-fit:cover; margin:0 auto 20px; display:block; border:4px solid var(--soft) }
-    .name{ font-size:1.3rem; font-weight:600; color:var(--blue-900); margin-bottom:8px }
-    .role{ color:var(--coral); font-weight:500; margin-bottom:16px }
-    .bio{ color:var(--muted); line-height:1.6; margin:0 }
+    .member{ background:#fff; padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); display:grid; grid-template-columns:100px 1fr; gap:16px; align-items:start }
+    .member .avatar{ width:100px; height:100px; border-radius:50%; object-fit:cover; border:4px solid var(--soft) }
+    .member .name{ font-size:1.1rem; font-weight:700; color:var(--blue-900); margin:0 0 4px }
+    .member .role{ color:var(--coral); font-weight:600; margin:0 0 10px; text-transform:uppercase }
+    .member .bio{ color:var(--muted); margin:0 0 8px }
+    .member .slot{ color:var(--blue-900); font-weight:600; margin:0 }
 
     /* ===== Contact ===== */
     .contact-content{ max-width:600px; margin:0 auto; text-align:center }
@@ -138,6 +139,8 @@
       .nav{ flex-direction:column; padding:16px 20px; min-height:auto }
       .navlinks{ margin-top:16px; justify-content:center; flex-wrap:wrap }
       section{ padding:40px 20px }
+      .member{ grid-template-columns:1fr; text-align:center }
+      .member .avatar{ margin:0 auto }
     }
   </style>
 </head>
@@ -152,7 +155,7 @@
       <div class="navlinks">
         <a href="#welcome">Accueil</a>
         <a href="#activites">Nos Activités</a>
-        <a href="#team">Notre Équipe</a>
+        <a href="#professionnels">Professionnels</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -184,68 +187,115 @@
       <p class="sub">Trois axes d’accompagnement pour répondre aux besoins des couples, familles et enfants.</p>
 
       <div class="services-grid">
-              <!-- 1) Consultations -->
-      <article class="service-card">
-        <span class="activity-icon">
-          <img src="/images/activities/consultations.png" alt="">
-        </span>
-        <h3>Consultations en couple ou individuelles</h3>
-        <p>Psychiatre, orthophoniste, psychomotricien·ne, psychologues enfants & ados, thérapeute Vittoz, spécialiste Communication Non Violente, conseillère conjugale et familiale, avocat en droit de la famille…</p>
-      </article>
-      
-      <!-- 2) Ateliers -->
-      <article class="service-card">
-        <span class="activity-icon">
-          <img src="/images/activities/ateliers.png" alt="">
-        </span>
-        <h3>Ateliers, conférences, groupe de parole</h3>
-        <p>Animés par des professionnels ou associations professionnelles. Planning mensuel à l’accueil de la Maison des Familles.</p>
-      </article>
-      
-      <!-- 3) Partages intergénérationnels -->
-      <article class="service-card">
-        <span class="activity-icon">
-          <img src="/images/activities/intergenerationnels.png" alt="">
-        </span>
-        <h3>Partages autour de moments intergénérationnels</h3>
-        <p>Repas, jeux, lecture, café, …</p>
-      </article>
+        <!-- 1) Consultations -->
+        <article class="service-card">
+          <span class="activity-icon">
+            <img src="/images/activities/consultations.png" alt="">
+          </span>
+          <h3>Consultations en couple ou individuelles</h3>
+          <p>Psychiatre, orthophoniste, psychomotricien·ne, psychologues enfants & ados, thérapeute Vittoz, spécialiste Communication Non Violente, conseillère conjugale et familiale, avocat en droit de la famille…</p>
+        </article>
+
+        <!-- 2) Ateliers / Conférences / Groupe de parole -->
+        <article class="service-card">
+          <span class="activity-icon">
+            <img src="/images/activities/ateliers.png" alt="">
+          </span>
+          <h3>Ateliers, conférences, groupe de parole</h3>
+          <p>Animés par des professionnels ou associations professionnelles. Planning mensuel à l’accueil de la Maison des Familles.</p>
+        </article>
+
+        <!-- 3) Partages intergénérationnels -->
+        <article class="service-card">
+          <span class="activity-icon">
+            <img src="/images/activities/intergenerationnels.png" alt="">
+          </span>
+          <h3>Partages autour de moments intergénérationnels</h3>
+          <p>Repas, jeux, lecture, café, …</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Team -->
-  <section id="team" class="team" aria-label="Notre équipe">
+  <!-- Professionnels -->
+  <section id="professionnels" class="team" aria-label="Professionnels">
     <div class="wrap">
-      <h2 class="title">Notre Équipe</h2>
+      <h2 class="title">Professionnels</h2>
       <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
 
       <div class="team-grid">
+
+        <!-- Agnès Dufour -->
         <article class="member">
-          <img class="avatar" src="/assets/p1.jpg" alt="Photo Elisabeth Charbonnier" />
-          <div class="name">Elisabeth Charbonnier</div>
-          <div class="role">Orthophoniste</div>
-          <p class="bio">Orthophoniste depuis 17 ans, j’accompagne des enfants comme des adultes après un AVC. La parole est source de vie et je suis animée par ce processus.</p>
+          <img class="avatar" src="/images/professionnels/agnes-dufour.jpg" alt="Photo Agnès Dufour (psychomotricienne)" />
+          <div>
+            <p class="name">Agnès Dufour</p>
+            <p class="role">Psychomotricienne</p>
+            <p class="bio">
+              Prise en charge d’enfants porteurs de troubles neurodéveloppementaux (TDAH, troubles de la coordination, retard de développement du jeune enfant de 3 à 12 ans, rééducation de l’écriture, interventions dans le champ des troubles des apprentissages).
+            </p>
+            <p class="bio">
+              Accompagnement des troubles tonico-émotionnels, troubles du spectre autistique (enfants et adultes) et adultes avec handicap mental ou moteur.
+            </p>
+            <p class="slot">Sur RDV · Mardis 9h–12h</p>
+          </div>
         </article>
+
+        <!-- Hélène Strauss -->
         <article class="member">
-          <img class="avatar" src="/assets/p2.jpg" alt="Photo Lucille Dauphin" />
-          <div class="name">Lucille Dauphin</div>
-          <div class="role">Psychologue clinicienne</div>
-          <p class="bio">Spécialisée dans les psychopathologies de l’enfant et de l’adolescent, je propose un accompagnement individuel et des ateliers thérapeutiques.</p>
+          <img class="avatar" src="/images/professionnels/helene-strauss.jpg" alt="Photo Hélène Strauss (praticienne Méthode Vittoz)" />
+          <div>
+            <p class="name">Hélène Strauss</p>
+            <p class="role">Praticienne Méthode Vittoz</p>
+            <p class="bio">
+              Le Vittoz s’adresse à tous (enfants, adolescents, adultes) pour apprendre à se poser et à accueillir. Approche centrée sur l’écoute des sensations et la présence à soi pour gagner en attention, régulation émotionnelle et volonté, sans surmenage.
+            </p>
+            <p class="slot">Sur RDV · Les lundis</p>
+          </div>
         </article>
+
+        <!-- Dr Pierre Balaresque -->
         <article class="member">
-          <img class="avatar" src="/assets/p3.jpg" alt="Photo Magali Quercioli" />
-          <div class="name">Magali Quercioli</div>
-          <div class="role">Enseignante PNL &amp; Coaching</div>
-          <p class="bio">Depuis 15 ans, j’accompagne des personnes et couples en quête de clarté, d’évolution et de mieux-être avec des outils de thérapies brèves.</p>
+          <img class="avatar" src="/images/professionnels/pierre-balaresque.jpg" alt="Photo Dr Pierre Balaresque (psychiatre)" />
+          <div>
+            <p class="name">Dr Pierre Balaresque</p>
+            <p class="role">Psychiatre</p>
+            <p class="bio">
+              Médecin spécialiste en santé mentale : diagnostic, prise en charge et prévention de la souffrance psychique et des troubles mentaux.
+            </p>
+            <p class="slot">Sur RDV</p>
+          </div>
         </article>
+
+        <!-- Zora Guerin -->
         <article class="member">
-          <img class="avatar" src="/assets/p4.jpg" alt="Photo Christine Solignac" />
-          <div class="name">Christine Solignac</div>
-          <div class="role">Conseillère conjugale &amp; familiale</div>
-          <p class="bio">J’accompagne personnes, couples et familles à prendre soin de leurs relations affectives et relationnelles, dans une approche systémique.</p>
+          <img class="avatar" src="/images/professionnels/zora-guerin.jpg" alt="Photo Zora Guerin (psychopraticienne & thérapeute de couple)" />
+          <div>
+            <p class="name">Zora Guerin</p>
+            <p class="role">Psychopraticienne & Thérapeute de couple</p>
+            <p class="bio">
+              Spécialisée en TCE (thérapie centrée sur les émotions) et en intelligence relationnelle, traitement des traumatismes du développement.
+            </p>
+            <p class="slot">Soirées thématiques</p>
+          </div>
         </article>
+
+        <!-- Pauline Paquet -->
+        <article class="member">
+          <img class="avatar" src="/images/professionnels/pauline-paquet.jpg" alt="Photo Pauline Paquet (avocate)" />
+          <div>
+            <p class="name">Pauline Paquet</p>
+            <p class="role">Avocate</p>
+            <p class="bio">
+              Barreau de Marseille. Droit de la famille, droit des personnes, indemnisation des victimes d’accidents ou d’agressions ; compétences en matière contractuelle.
+            </p>
+            <p class="slot">Sur RDV · Les lundis 16h–19h</p>
+          </div>
+        </article>
+
       </div>
+
+      <p class="sub" style="margin-top:32px;">À venir : pédiatre, sage-femme & beaucoup d’autres…</p>
     </div>
   </section>
 
@@ -262,7 +312,6 @@
           <p><strong>Email :</strong><br><a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
           <p><strong>Téléphone :</strong><br><a href="tel:0491000000">04 91 XX XX XX</a><br><small>Lundi–Vendredi : 9h–17h</small></p>
           <p><strong>Adresse :</strong><br>116 BOULEVARD VAUBAN<br>13006 MARSEILLE</p>
-          <!-- Emergency numbers block removed as requested -->
         </div>
       </div>
     </div>
