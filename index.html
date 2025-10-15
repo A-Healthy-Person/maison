@@ -98,7 +98,13 @@
       min-height:160px;
     }
     .service-card:hover{ transform:translateY(-4px) }
-    .service-card h3{ color:var(--blue-900); margin:0 0 10px; font-size:1.2rem; font-weight:700; text-transform:uppercase }
+    .service-card h3{
+      color:var(--blue-900); margin:0 0 10px; font-size:1.2rem; font-weight:700; text-transform:uppercase;
+      /* Wrap fix so long titles don't run under the icon */
+      max-width:80%;
+      word-wrap:break-word;
+      overflow-wrap:break-word;
+    }
     .service-card p{ color:var(--muted); margin:0; line-height:1.7 }
 
     .activity-icon{
