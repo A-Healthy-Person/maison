@@ -66,7 +66,7 @@
     .wrap{ max-width:1160px; margin:auto }
     .title{
       font-size:clamp(28px,3vw,42px); color:var(--blue-900);
-      margin:0 0 16px; text-align:center; font-weight:700;
+      margin:0 0 8px; text-align:center; font-weight:700;
     }
     .sub{ color:var(--muted); text-align:center; font-size:1.1rem; margin:0 auto 40px; max-width:800px; }
 
@@ -144,6 +144,21 @@
       border:1px solid #dbe2ff;
       vertical-align:middle;
     }
+
+    /* Tiny anchor links under section title */
+    .anchor-links{
+      text-align:center;
+      margin:4px 0 26px;
+      font-size:0.95rem;
+    }
+    .anchor-links a{
+      color:var(--blue-900);
+      text-decoration:none;
+      font-weight:600;
+      margin:0 6px;
+      opacity:0.9;
+    }
+    .anchor-links a:hover{ text-decoration:underline; opacity:1 }
 
     /* ===== Contact ===== */
     .contact-content{ max-width:600px; margin:0 auto; text-align:center }
@@ -248,39 +263,16 @@
   <section id="professionnels" class="team" aria-label="Professionnels">
     <div class="wrap">
       <h2 class="title">Professionnels</h2>
-      <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
 
-      <!-- Pastoral group -->
-      <h3 class="mini-title" id="pastorale">Équipe pastorale</h3>
-      <div class="team-grid" role="group" aria-labelledby="pastorale">
-        <!-- Père François Buet -->
-        <article class="member">
-          <img class="avatar" src="/images/professionnels/placeholder.jpg" alt="Photo Père François Buet" />
-          <div>
-            <p class="name">
-              Père François Buet
-              <span class="pill">Pastorale</span>
-            </p>
-            <p class="role">Prêtre</p>
-            <p class="bio">Accompagnement spirituel.</p>
-          </div>
-        </article>
-
-        <!-- Élise Chapelle -->
-        <article class="member">
-          <img class="avatar" src="/images/professionnels/placeholder.jpg" alt="Photo Élise Chapelle" />
-          <div>
-            <p class="name">
-              Élise Chapelle
-              <span class="pill">Pastorale</span>
-            </p>
-            <p class="role">Soutien pastoral</p>
-            <p class="bio">Soutien pastoral.</p>
-          </div>
-        </article>
+      <!-- Tiny anchor links -->
+      <div class="anchor-links" aria-label="Liens rapides vers les sous-sections">
+        <a href="#pro">Aller à l’équipe professionnelle</a> •
+        <a href="#pastorale">Aller à l’équipe pastorale</a>
       </div>
 
-      <!-- Professional group -->
+      <p class="sub">Notre équipe professionnelle et pastorale au service des familles.</p>
+
+      <!-- Professional group (first) -->
       <h3 class="mini-title" id="pro">Équipe professionnelle</h3>
       <div class="team-grid" role="group" aria-labelledby="pro">
         <article class="member">
@@ -367,6 +359,28 @@
             <p class="role">Avocate</p>
             <p class="bio">Barreau de Marseille. Droit de la famille, droit des personnes, indemnisation des victimes d’accidents ou d’agressions ; compétences en matière contractuelle.</p>
             <p class="slot">Sur RDV · Lundis 16h–19h</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pastoral group (second) -->
+      <h3 class="mini-title" id="pastorale">Équipe pastorale</h3>
+      <div class="team-grid" role="group" aria-labelledby="pastorale">
+        <article class="member">
+          <img class="avatar" src="/images/professionnels/francois-buet.png" alt="Photo Père François Buet" />
+          <div>
+            <p class="name">Père François Buet <span class="pill">Pastorale</span></p>
+            <p class="role">Prêtre</p>
+            <p class="bio">Accompagnement spirituel.</p>
+          </div>
+        </article>
+
+        <article class="member">
+          <img class="avatar" src="/images/professionnels/elise-chapelle.png" alt="Photo Élise Chapelle" />
+          <div>
+            <p class="name">Élise Chapelle <span class="pill">Pastorale</span></p>
+            <p class="role">Soutien pastoral</p>
+            <p class="bio">Soutien pastoral.</p>
           </div>
         </article>
       </div>
