@@ -49,7 +49,7 @@
     }
     .brand{ display:flex; align-items:center; text-decoration:none; flex-shrink:0 }
     .brand img{
-      height:140px; /* header logo further reduced */
+      height:140px;
       width:auto; object-fit:contain;
       filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));
     }
@@ -101,16 +101,24 @@
     .service-card h3{ color:var(--blue-900); margin:0 0 10px; font-size:1.2rem; font-weight:700; text-transform:uppercase }
     .service-card p{ color:var(--muted); margin:0; line-height:1.7 }
 
-    /* Activity icon holder — assumes PNGs already include coral circle */
     .activity-icon{
       position:absolute; top:18px; right:18px; width:56px; height:56px;
       display:block; border-radius:50%; overflow:hidden; box-shadow:0 6px 16px rgba(0,0,0,.12)
     }
     .activity-icon img{ width:56px; height:56px; display:block; object-fit:contain }
 
-    /* ===== Professionals ===== */
+    /* ===== Teams ===== */
     .team{ background:var(--soft) }
-    .team-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-top:40px }
+    .team-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-top:16px }
+    .mini-title{
+      font-family:'Fredoka',sans-serif;
+      font-size:1rem;
+      letter-spacing:.02em;
+      color:#6b7280;
+      text-transform:uppercase;
+      margin:28px 0 8px;
+      text-align:left;
+    }
     .member{
       background:#fff; padding:28px; border-radius:var(--radius); box-shadow:var(--shadow);
       display:grid; grid-template-columns:100px 1fr; gap:16px; align-items:start
@@ -120,6 +128,16 @@
     .member .role{ color:var(--coral); font-weight:600; margin:0 0 10px; text-transform:uppercase }
     .member .bio{ color:var(--muted); margin:0 0 8px }
     .member .slot{ color:var(--blue-900); font-weight:600; margin:0 }
+    .pill{
+      display:inline-block;
+      font: 600 .7rem/1 'Open Sans',sans-serif;
+      padding:4px 8px;
+      margin-left:8px;
+      border-radius:999px;
+      background:#eef2ff;
+      border:1px solid #dbe2ff;
+      vertical-align:middle;
+    }
 
     /* ===== Contact ===== */
     .contact-content{ max-width:600px; margin:0 auto; text-align:center }
@@ -133,7 +151,7 @@
     /* ===== Footer ===== */
     footer{ background:var(--blue-900); color:#fff; padding:32px 20px; text-align:center }
     .foot{ max-width:1160px; margin:auto; display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap }
-    .foot img{ height:112px; opacity:0.9 } /* footer logo reduced 20% */
+    .foot img{ height:112px; opacity:0.9 }
     .foot small{ opacity:0.8 }
     footer .foot a{ color:#fff !important; text-decoration:underline !important; font-weight:600 }
 
@@ -169,7 +187,7 @@
     <div class="welcome-grid">
       <h1>Bienvenue à la Maison des Familles</h1>
       <p>Lieu d’accueil, d’écoute et d’accompagnement pour les couples, familles et enfants afin de les soutenir dans la conjugalité, parentalité et éducation.</p>
-      <p style="color:#888;margin-top:.5rem;">Cliquez sur une photo pour l’agrandir.</p>
+      <!-- 'Cliquez…' text removed -->
     </div>
 
     <!-- Gallery -->
@@ -226,8 +244,40 @@
       <h2 class="title">Professionnels</h2>
       <p class="sub">Une équipe pluridisciplinaire au service des familles.</p>
 
-      <div class="team-grid">
-        <!-- Existing members (4) -->
+      <!-- Pastoral group -->
+      <h3 class="mini-title" id="pastorale">Équipe pastorale</h3>
+      <div class="team-grid" role="group" aria-labelledby="pastorale">
+        <!-- Père François Buet -->
+        <article class="member">
+          <img class="avatar" src="/assets/placeholder.jpg" alt="Photo Père François Buet" />
+          <div>
+            <p class="name">
+              Père François Buet
+              <span class="pill">Pastorale</span>
+            </p>
+            <p class="role">Prêtre</p>
+            <p class="bio">Accompagnement spirituel.</p>
+          </div>
+        </article>
+
+        <!-- Élise Chapelle -->
+        <article class="member">
+          <img class="avatar" src="/assets/placeholder.jpg" alt="Photo Élise Chapelle" />
+          <div>
+            <p class="name">
+              Élise Chapelle
+              <span class="pill">Pastorale</span>
+            </p>
+            <p class="role">Soutien pastoral</p>
+            <p class="bio">Soutien pastoral.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Professional group -->
+      <h3 class="mini-title" id="pro">Équipe professionnelle</h3>
+      <div class="team-grid" role="group" aria-labelledby="pro">
+        <!-- Existing members (examples) -->
         <article class="member">
           <img class="avatar" src="/assets/p1.jpg" alt="Photo Elisabeth Charbonnier" />
           <div>
@@ -264,7 +314,6 @@
           </div>
         </article>
 
-        <!-- New professionals (5) -->
         <article class="member">
           <img class="avatar" src="/images/professionnels/agnes-dufour.jpg" alt="Photo Agnès Dufour (psychomotricienne)" />
           <div>
@@ -300,7 +349,7 @@
           <img class="avatar" src="/images/professionnels/zora-guerin.jpg" alt="Photo Zora Guerin (psychopraticienne & thérapeute de couple)" />
           <div>
             <p class="name">Zora Guerin</p>
-            <p class="role">Psychopraticienne & Thérapeute de couple</p>
+            <p class="role">Psychopraticienne &amp; Thérapeute de couple</p>
             <p class="bio">Spécialisée en TCE (thérapie centrée sur les émotions) et en intelligence relationnelle. Prise en charge des traumatismes du développement.</p>
             <p class="slot">Soirées thématiques</p>
           </div>
@@ -315,36 +364,32 @@
             <p class="slot">Sur RDV · Lundis 16h–19h</p>
           </div>
         </article>
-
       </div>
 
-      <p class="sub" style="margin-top:32px;">À venir : pédiatre, sage-femme & beaucoup d’autres…</p>
+      <p class="sub" style="margin-top:32px;">À venir : pédiatre, sage-femme &amp; beaucoup d’autres…</p>
     </div>
   </section>
 
   <!-- Contact -->
-  <!-- Contact -->
-<section id="contact" aria-label="Contact">
-  <div class="wrap">
-    <h2 class="title">Contactez-nous</h2>
-    
-    <div class="contact-content">
-      <div class="contact-message">
-        <p>Permanence du Lundi au Vendredi de 16h à 18h30<br>
-        Consultations &amp; Conférences sur RDV</p>
+  <section id="contact" aria-label="Contact">
+    <div class="wrap">
+      <h2 class="title">Contactez-nous</h2>
+      <div class="contact-content">
+        <div class="contact-message">
+          <p>Permanence du Lundi au Vendredi de 16h à 18h30<br>
+          Consultations &amp; Conférences sur RDV</p>
 
-        <p><strong>Adresse :</strong><br>116 boulevard Vauban<br>13006 Marseille</p>
+          <p><strong>Adresse :</strong><br>116 boulevard Vauban<br>13006 Marseille</p>
 
-        <p><strong>Contact :</strong><br>Elise CHAPELLE<br>
-        <a href="tel:0763326347">07.63.32.63.47</a></p>
+          <p><strong>Contact :</strong><br>Élise Chapelle<br>
+          <a href="tel:0763326347">07.63.32.63.47</a></p>
 
-        <p><strong>Email :</strong><br>
-        <a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
+          <p><strong>Email :</strong><br>
+          <a href="mailto:mdfstfrancoisdassise@gmail.com">mdfstfrancoisdassise@gmail.com</a></p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Footer -->
   <footer role="contentinfo">
@@ -352,10 +397,10 @@
       <img src="/images/logos/BLOGO.png" alt="Logo Maison des Familles" />
       <small>
         © <span id="year"></span> · Maison des Familles – Saint François d’Assise · Accueil, écoute et accompagnement · 
-        <a href="/mentions-legales.html">Mentions légales & Confidentialité</a>
+        <a href="/mentions-legales.html">Mentions légales &amp; Confidentialité</a>
       </small>
     </div>
-  </footer> 
+  </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
